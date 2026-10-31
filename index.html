@@ -1,0 +1,3230 @@
+<!doctype html>
+<html lang="en" class="light">
+  
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+    <meta charset="UTF-8" />
+
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Theme must be applied BEFORE any render-blocking resource -->
+    <script>
+      (function () {
+        var t = localStorage.getItem("Clientra-theme");
+        if (!t) {
+          t = window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+        document.documentElement.classList.remove("light", "dark");
+        document.documentElement.classList.add(t);
+      })();
+    </script>
+
+    <meta
+      name="description"
+      content="Clientra – CRM Dashboard UI Kit. Manage contacts, companies, deals, and tasks in one place."
+    />
+    <meta name="author" content="Clientra" />
+    <title>Clientra – CRM & Customer Management Dashboard</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+  <link href="assets/css/index.css" rel="stylesheet"></head>
+  <body class="bg-app-bg text-text font-['Inter']" data-page="dashboard">
+    <!-- ====================================================================
+       APP SHELL
+       ==================================================================== -->
+    <div id="app" class="relative min-h-dvh">
+      <!-- ==================================================================
+     SIDEBAR – Desktop fixed / Mobile off-canvas drawer
+     ================================================================== -->
+<aside
+  id="sidebar"
+  class="sidebar-drawer fixed top-0 left-0 z-40 h-full w-[248px] bg-card border-r border-border flex flex-col panel-transition lg:translate-x-0"
+  role="navigation"
+  aria-label="Main navigation"
+>
+  <!-- ── Brand ────────────────────────────────────────────────────── -->
+  <div
+    class="brand-row flex items-center justify-between h-[68px] px-5 shrink-0"
+  >
+    <a aria-label='Clientra Home' class='flex items-center min-w-0' href='index.html'>
+      <img
+        src="assets/images/logo.png"
+        alt="Clientra"
+        width="104"
+        height="26"
+        class="h-[26px] w-[104px] object-contain object-left"
+      />
+    </a>
+    <button
+      id="sidebar-collapse-btn"
+      class="sidebar-collapse-control hidden lg:flex items-center justify-center w-8 h-8 rounded-lg text-muted hover:text-heading hover:bg-subtle transition-colors duration-200 shrink-0"
+      aria-label="Toggle sidebar"
+    >
+      <i class="ph ph-sidebar-simple text-lg"></i>
+    </button>
+  </div>
+
+  <!-- ── Search ──────────────────────────────────────────────────── -->
+  <div class="px-4 pb-3 shrink-0">
+    <button
+      id="sidebar-search-trigger"
+      class="flex items-center w-full h-10 gap-2.5 px-3 rounded-xl bg-subtle border border-border text-muted hover:border-border-strong transition-colors duration-200"
+      aria-label="Search"
+    >
+      <i class="ph ph-magnifying-glass text-base shrink-0"></i>
+      <span class="sidebar-label text-sm flex-1 text-left">Search</span>
+      <kbd
+        class="sidebar-label text-[11px] font-medium text-muted/80 bg-card border border-border rounded px-1.5 py-0.5"
+        >⌘ F</kbd
+      >
+    </button>
+  </div>
+
+  <!-- ── Navigation ───────────────────────────────────────────────── -->
+  <nav
+    class="flex-1 overflow-y-auto overflow-x-hidden px-3 pb-4"
+    id="sidebar-nav"
+  >
+    <!-- MAIN MENU -->
+    <p
+      class="sidebar-label px-3 mt-2 mb-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+    >
+      Main Menu
+    </p>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='dashboard' data-tip='Dashboard' href='index.html'>
+      <i class="ph ph-squares-four text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Dashboard</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='contacts' data-tip='Contacts' href='contacts.html'>
+      <i class="ph ph-address-book text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Contacts</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='companies' data-tip='Companies' href='companies.html'>
+      <i class="ph ph-buildings text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Companies</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='deals' data-tip='Deals' href='deals.html'>
+      <i class="ph ph-handshake text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Deals</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='tasks' data-tip='Tasks' href='tasks.html'>
+      <i class="ph ph-check-square text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Tasks</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='reports' data-tip='Reports' href='reports.html'>
+      <i class="ph ph-chart-line text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Reports</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='calendar' data-tip='Calendar' href='calendar.html'>
+      <i class="ph ph-calendar-blank text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Calendar</span>
+    </a>
+
+    <!-- MARKETING -->
+    <p
+      class="sidebar-label px-3 mt-5 mb-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+    >
+      Marketing
+    </p>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='products' data-tip='Products' href='products.html'>
+      <i class="ph ph-package text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Products</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='emails' data-tip='Emails' href='emails.html'>
+      <i class="ph ph-envelope-simple text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Emails</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='invoices' data-tip='Invoices' href='invoices.html'>
+      <i class="ph ph-receipt text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Invoices</span>
+    </a>
+
+    <!-- PREFERENCES -->
+    <p
+      class="sidebar-label px-3 mt-5 mb-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+    >
+      Preferences
+    </p>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='integrations' data-tip='Integrations' href='integrations.html'>
+      <i class="ph ph-plugs-connected text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Integrations</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='profile' data-tip='Profile' href='profile.html'>
+      <i class="ph ph-user-circle text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Profile</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='settings' data-tip='Settings' href='settings.html'>
+      <i class="ph ph-gear-six text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Settings</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='notifications' data-tip='Notifications' href='notifications.html'>
+      <i class="ph ph-bell text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Notifications</span>
+    </a>
+
+    <!-- DETAIL PAGES -->
+    <p
+      class="sidebar-label px-3 mt-5 mb-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+    >
+      Detail Pages
+    </p>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='company-detail' data-tip='Company detail' href='company-detail.html'>
+      <i class="ph ph-building-office text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Company detail</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='deal-detail' data-tip='Deal detail' href='deal-detail.html'>
+      <i class="ph ph-handshake text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Deal detail</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='product-detail' data-tip='Product detail' href='product-detail.html'>
+      <i class="ph ph-package text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Product detail</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='edit-contact' data-tip='Edit contact' href='edit-contact.html'>
+      <i class="ph ph-pencil-simple text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Edit contact</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='explore-integrations' data-tip='Explore integrations' href='explore-integrations.html'>
+      <i class="ph ph-compass text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Explore integrations</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='import-csv' data-tip='Import CSV' href='import-csv.html'>
+      <i class="ph ph-file-csv text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Import CSV</span>
+    </a>
+
+    <!-- CREATE FORMS -->
+    <p
+      class="sidebar-label px-3 mt-5 mb-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+    >
+      Create
+    </p>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='add-contact' data-tip='Add contact' href='add-contact.html'>
+      <i class="ph ph-user-plus text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Add contact</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='add-company' data-tip='Add company' href='add-company.html'>
+      <i class="ph ph-buildings text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Add company</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='add-deal' data-tip='Add deal' href='add-deal.html'>
+      <i class="ph ph-plus-circle text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Add deal</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='add-product' data-tip='Add product' href='add-product.html'>
+      <i class="ph ph-package text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Add product</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='add-task' data-tip='Add task' href='add-task.html'>
+      <i class="ph ph-check-square text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Add task</span>
+    </a>
+
+    <!-- AUTH -->
+    <p
+      class="sidebar-label px-3 mt-5 mb-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+    >
+      Auth
+    </p>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='sign-in' data-tip='Sign in' href='sign-in.html'>
+      <i class="ph ph-sign-in text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Sign in</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='sign-up' data-tip='Sign up' href='sign-up.html'>
+      <i class="ph ph-user-plus text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Sign up</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='forgot-password' data-tip='Forgot password' href='forgot-password.html'>
+      <i class="ph ph-lock-key text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Forgot password</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='otp-verification' data-tip='OTP verification' href='otp-verification.html'>
+      <i class="ph ph-shield-check text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">OTP verification</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='new-password' data-tip='New password' href='new-password.html'>
+      <i class="ph ph-key text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">New password</span>
+    </a>
+  </nav>
+
+  <!-- ── Trial / Upgrade card ─────────────────────────────────────── -->
+  <div id="trial-card" class="sidebar-label px-3 shrink-0">
+    <div class="relative rounded-2xl bg-subtle border border-border p-4">
+      <button
+        id="trial-card-dismiss"
+        class="absolute top-3 right-3 w-6 h-6 rounded-md flex items-center justify-center text-muted hover:text-heading hover:bg-card transition-colors duration-200"
+        aria-label="Dismiss"
+      >
+        <i class="ph ph-x text-sm"></i>
+      </button>
+      <span
+        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-heading text-card text-xs font-semibold"
+      >
+        <i class="ph-fill ph-lightning text-warn"></i>
+        20 days left
+      </span>
+      <p class="mt-3 text-[13px] leading-snug text-text">
+        Upgrade to premium and enjoy the benefits for a long time
+      </p>
+      <button
+        class="mt-3.5 w-full h-9 rounded-lg bg-card border border-border text-sm font-semibold text-heading hover:bg-app-bg transition-colors duration-200"
+      >
+        View plan
+      </button>
+    </div>
+  </div>
+
+  <!-- ── User panel ───────────────────────────────────────────────── -->
+  <div class="p-3 shrink-0 relative">
+    <button
+      id="account-switcher-btn"
+      class="flex items-center w-full gap-3 px-2.5 py-2 rounded-xl border border-border bg-card hover:bg-subtle transition-colors duration-200"
+      aria-expanded="false"
+    >
+      <img
+        src="assets/images/user1.png"
+        alt="Maulana Pratama"
+        class="w-9 h-9 rounded-full object-cover shrink-0"
+      />
+      <span class="sidebar-label flex-1 min-w-0 text-left">
+        <span class="block text-[13px] font-semibold text-heading truncate"
+          >Maulana Pratama</span
+        >
+        <span class="block text-[11px] text-muted truncate"
+          >maulana@gmail.com</span
+        >
+      </span>
+      <i
+        class="sidebar-label ph ph-caret-up-down text-base text-muted shrink-0"
+      ></i>
+    </button>
+
+    <!-- Account switcher popup (anchored above user panel) -->
+    <div
+      id="account-switcher"
+      class="absolute bottom-full left-0 right-0 mb-2 z-[55] hidden card !rounded-2xl shadow-2xl p-1.5"
+    >
+      <!-- Active account -->
+      <div class="flex items-center gap-3 px-2.5 py-2 rounded-xl bg-subtle">
+        <img
+          src="assets/images/user1.png"
+          alt=""
+          class="w-9 h-9 rounded-full object-cover shrink-0"
+        />
+        <div class="flex-1 min-w-0">
+          <p class="text-[13px] font-semibold text-heading truncate">
+            Maulana Pratama
+          </p>
+          <p class="text-[11px] text-muted truncate">maulana@gmail.com</p>
+        </div>
+        <i class="ph-bold ph-check-circle text-base text-accent shrink-0"></i>
+      </div>
+
+      <!-- Second account -->
+      <button
+        id="account-switch-galih"
+        class="flex items-center gap-3 w-full px-2.5 py-2 rounded-xl hover:bg-subtle transition-colors duration-200 mt-0.5 text-left"
+      >
+        <img
+          src="assets/images/user7.png"
+          alt=""
+          class="w-9 h-9 rounded-full object-cover shrink-0"
+        />
+        <div class="flex-1 min-w-0">
+          <p class="text-[13px] font-semibold text-heading truncate">
+            Galih Adi Saptaji
+          </p>
+          <p class="text-[11px] text-muted truncate">galih@gmail.com</p>
+        </div>
+      </button>
+
+      <div class="my-1.5 h-px bg-border mx-1"></div>
+
+      <!-- Add account → sign-up page -->
+      <a class='flex items-center gap-3 w-full px-2.5 py-2 rounded-xl hover:bg-subtle transition-colors duration-200 text-sm font-medium text-text' href='sign-up.html'>
+        <i class="ph ph-plus-circle text-lg text-muted shrink-0"></i> Add
+        account
+      </a>
+
+      <!-- Sign out -->
+      <button
+        id="sign-out-btn"
+        class="flex items-center gap-3 w-full px-2.5 py-2 rounded-xl hover:bg-negative/10 transition-colors duration-200 text-sm font-medium text-negative"
+      >
+        <i class="ph ph-sign-out text-lg shrink-0"></i> Sign Out
+      </button>
+    </div>
+  </div>
+</aside>
+
+<!-- ── Mobile sidebar overlay ─────────────────────────────────── -->
+<div
+  id="sidebar-overlay"
+  class="fixed inset-0 z-30 bg-black/40 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden"
+  aria-hidden="true"
+></div>
+
+
+      <!-- ==================================================================
+         TOP BAR
+         ================================================================== -->
+      <header
+        id="topbar"
+        class="fixed top-0 right-0 left-0 lg:left-[248px] z-20 h-[68px] bg-app-bg/85 backdrop-blur-xl border-b border-border transition-all duration-300"
+      >
+        <div class="flex items-center justify-between h-full px-4 lg:px-6">
+          <!-- Left: toggle + page title -->
+          <div class="flex items-center gap-3">
+            <button
+              id="mobile-sidebar-toggle"
+              class="lg:hidden flex items-center justify-center w-10 h-10 rounded-xl border border-border bg-card text-muted hover:text-heading transition-colors duration-200"
+              aria-label="Open sidebar menu"
+            >
+              <i class="ph ph-list text-xl"></i>
+            </button>
+            <h2
+              class="hidden sm:block text-lg font-bold text-heading tracking-tight"
+            >
+              Dashboard
+            </h2>
+          </div>
+
+          <div class="flex items-center gap-2 sm:gap-3">
+ 
+
+  <!-- ── Notifications ─────────────────────────────────────── -->
+  <div class="relative" id="notifications-wrapper">
+    <button
+      id="notifications-btn"
+      class="relative flex items-center justify-center w-10 h-10 rounded-xl border border-border bg-card text-muted hover:bg-subtle hover:text-heading transition-colors duration-200"
+      aria-label="Notifications"
+      aria-expanded="false"
+      aria-haspopup="true"
+    >
+      <i class="ph ph-bell text-lg"></i>
+      <span
+        class="absolute top-1.5 right-2 w-2 h-2 rounded-full bg-negative ring-2 ring-card"
+      ></span>
+    </button>
+
+    <!-- Notifications dropdown -->
+    <div
+      id="notifications-dropdown"
+      class="absolute right-0 top-full mt-2.5 w-72 sm:w-80 card !rounded-2xl shadow-xl shadow-black/5 opacity-0 pointer-events-none scale-95 origin-top-right transition-all duration-200 z-50"
+      role="menu"
+    >
+      <div
+        class="px-4 py-3 border-b border-border flex items-center justify-between"
+      >
+        <h3 class="text-sm font-semibold text-heading">Notifications</h3>
+        <button class="text-xs text-accent font-medium hover:underline">
+          Mark all read
+        </button>
+      </div>
+      <div class="p-1.5 max-h-72 overflow-y-auto">
+        <div
+          class="flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-subtle transition-colors duration-200 cursor-pointer"
+        >
+          <img
+            src="assets/images/user2.png"
+            alt=""
+            class="w-8 h-8 rounded-full object-cover shrink-0"
+          />
+          <div class="flex-1 min-w-0">
+            <p class="text-[13px] text-heading">
+              <span class="font-semibold">Adinda Ayu</span> assigned you a new
+              deal
+            </p>
+            <p class="text-[11px] text-muted mt-0.5">2 min ago</p>
+          </div>
+        </div>
+        <div
+          class="flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-subtle transition-colors duration-200 cursor-pointer"
+        >
+          <img
+            src="assets/images/user3.png"
+            alt=""
+            class="w-8 h-8 rounded-full object-cover shrink-0"
+          />
+          <div class="flex-1 min-w-0">
+            <p class="text-[13px] text-heading">
+              <span class="font-semibold">Dwi Wahyu</span> commented on a task
+            </p>
+            <p class="text-[11px] text-muted mt-0.5">15 min ago</p>
+          </div>
+        </div>
+        <div
+          class="flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-subtle transition-colors duration-200 cursor-pointer"
+        >
+          <div
+            class="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center shrink-0"
+          >
+            <i class="ph-bold ph-check text-sm text-accent"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="text-[13px] text-heading">
+              Deal <span class="font-semibold">Cloud Migration</span> marked won
+            </p>
+            <p class="text-[11px] text-muted mt-0.5">1 hour ago</p>
+          </div>
+        </div>
+      </div>
+      <div class="px-4 py-2.5 border-t border-border">
+        <a class='block w-full text-center text-xs font-medium text-accent hover:underline' href='notifications.html'>
+          View all notifications
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Member / avatar stack ─────────────────────────────── -->
+  <div class="relative" id="members-wrapper">
+    <button
+      id="members-btn"
+      class="flex items-center h-10 pl-1 pr-1 rounded-full transition-colors duration-200"
+      aria-label="Team members"
+      aria-expanded="false"
+      aria-haspopup="true"
+    >
+      <span class="flex -space-x-2.5">
+        <img
+          src="assets/images/user1.png"
+          alt=""
+          class="w-8 h-8 rounded-full object-cover ring-2 ring-card"
+        />
+        <img
+          src="assets/images/user2.png"
+          alt=""
+          class="w-8 h-8 rounded-full object-cover ring-2 ring-card hidden sm:block"
+        />
+        <span class="flex items-center justify-center w-8 h-8 rounded-full bg-heading text-card hover:opacity-90 transition-opacity duration-200"
+          aria-label="Add new">
+          <i class="ph-bold ph-plus text-base"></i>
+        </span>
+      </span>
+    </button>
+
+    <!-- Members dropdown -->
+    <div
+      id="members-dropdown"
+      class="absolute right-0 top-full mt-2.5 w-64 card !rounded-2xl shadow-xl shadow-black/5 p-1.5 opacity-0 pointer-events-none scale-95 origin-top-right transition-all duration-200 z-50"
+      role="menu"
+    >
+      <div
+        class="flex items-center gap-3 px-2.5 py-2 rounded-xl hover:bg-subtle transition-colors duration-200 cursor-pointer"
+      >
+        <img
+          src="assets/images/user4.png"
+          alt=""
+          class="w-9 h-9 rounded-full object-cover"
+        />
+        <div class="flex-1 min-w-0">
+          <p class="text-[13px] font-semibold text-heading truncate">
+            Hendra Kurniawan
+          </p>
+          <p class="text-[11px] text-muted truncate">hendra@gmail.com</p>
+        </div>
+        <i class="ph ph-paper-plane-tilt text-base text-muted"></i>
+      </div>
+      <div
+        class="flex items-center gap-3 px-2.5 py-2 rounded-xl hover:bg-subtle transition-colors duration-200 cursor-pointer"
+      >
+        <span
+          class="w-9 h-9 rounded-full bg-subtle border border-border flex items-center justify-center text-[12px] font-semibold text-muted"
+          >MP</span
+        >
+        <div class="flex-1 min-w-0">
+          <p class="text-[13px] font-semibold text-heading truncate">
+            Maulana Putri
+          </p>
+          <p class="text-[11px] text-muted truncate">maulana@gmail.com</p>
+        </div>
+        <i class="ph ph-paper-plane-tilt text-base text-muted"></i>
+      </div>
+      <div
+        class="flex items-center gap-3 px-2.5 py-2 rounded-xl hover:bg-subtle transition-colors duration-200 cursor-pointer"
+      >
+        <img
+          src="assets/images/user5.png"
+          alt=""
+          class="w-9 h-9 rounded-full object-cover"
+        />
+        <div class="flex-1 min-w-0">
+          <p class="text-[13px] font-semibold text-heading truncate">
+            Dwi Ayu Lestari
+          </p>
+          <p class="text-[11px] text-muted truncate">dwiayu@gmail.com</p>
+        </div>
+        <i class="ph ph-paper-plane-tilt text-base text-muted"></i>
+      </div>
+      <button
+        class="mt-1 w-full h-10 rounded-xl bg-heading text-card text-sm font-semibold hover:opacity-90 transition-opacity duration-200 flex items-center justify-center gap-2"
+      >
+        <i class="ph-bold ph-plus text-sm"></i>
+        Add member
+      </button>
+    </div>
+  </div>
+
+  <!-- ── Add button ────────────────────────────────────────── -->
+  
+
+  <!-- ── Theme toggle ──────────────────────────────────────── -->
+  <button
+    id="theme-toggle"
+    class="flex items-center justify-center w-10 h-10 rounded-xl border border-border bg-card text-muted hover:bg-subtle hover:text-heading transition-colors duration-200"
+    aria-label="Toggle dark mode"
+  >
+    <i id="theme-toggle-icon" class="ph ph-moon text-lg"></i>
+  </button>
+</div>
+
+        </div>
+      </header>
+
+      <!-- ==================================================================
+         MAIN CONTENT AREA
+         ================================================================== -->
+      <main
+        id="main-content"
+        class="pt-[68px] pb-12 lg:pb-0 min-h-dvh transition-all duration-300 lg:ml-[248px]"
+      >
+        <div class="p-4 lg:p-6 space-y-5">
+          <!-- ── Controls row: tabs + actions ─────────────────────── -->
+          <div class="flex items-center justify-between gap-3 flex-wrap">
+            <!-- Segmented tabs -->
+            <div
+              class="flex items-center gap-1 p-1 rounded-xl bg-subtle border border-border overflow-x-auto scrollbar-hide"
+              role="tablist"
+              data-tabs
+            >
+              <button
+                class="tab-btn tab-active px-4 py-2 rounded-lg text-sm font-semibold whitespace-nowrap"
+                role="tab"
+                aria-selected="true"
+                data-tab-target="tab-overview"
+              >
+                Overview
+              </button>
+              <button
+                class="tab-btn px-4 py-2 rounded-lg text-sm font-medium text-muted hover:text-heading transition-colors duration-200 whitespace-nowrap"
+                role="tab"
+                aria-selected="false"
+                data-tab-target="tab-sales"
+              >
+                Sales
+              </button>
+              <button
+                class="tab-btn px-4 py-2 rounded-lg text-sm font-medium text-muted hover:text-heading transition-colors duration-200 whitespace-nowrap"
+                role="tab"
+                aria-selected="false"
+                data-tab-target="tab-order"
+              >
+                Order
+              </button>
+              <button
+                class="tab-btn px-4 py-2 rounded-lg text-sm font-medium text-muted hover:text-heading transition-colors duration-200 whitespace-nowrap"
+                role="tab"
+                aria-selected="false"
+                data-tab-target="tab-report"
+              >
+                Report
+              </button>
+            </div>
+
+            <!-- Right actions -->
+            <div class="flex items-center gap-2.5">
+              <!-- Filter dropdown -->
+              <div class="relative" data-dropdown>
+                <button
+                  data-dropdown-trigger
+                  class="inline-flex items-center gap-2 h-10 px-3.5 rounded-xl border border-border bg-card text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="ph ph-sliders-horizontal text-base"></i>
+                  <span class="hidden sm:inline">Filter</span>
+                </button>
+                <div
+                  data-dropdown-menu
+                  class="absolute right-0 top-full mt-2 w-56 card !rounded-2xl shadow-xl shadow-black/5 p-2 opacity-0 pointer-events-none scale-95 origin-top-right transition-all duration-200 z-50"
+                  role="menu"
+                >
+                  <p
+                    class="px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-muted/70"
+                  >
+                    Filter by stage
+                  </p>
+                  <label
+                    class="flex items-center gap-2.5 px-2.5 py-2 rounded-lg hover:bg-subtle cursor-pointer transition-colors duration-200"
+                  >
+                    <input
+                      type="checkbox"
+                      class="w-4 h-4 rounded border-border-strong accent-[var(--color-accent)]"
+                      checked
+                    />
+                    <span class="text-sm text-text">New</span>
+                  </label>
+                  <label
+                    class="flex items-center gap-2.5 px-2.5 py-2 rounded-lg hover:bg-subtle cursor-pointer transition-colors duration-200"
+                  >
+                    <input
+                      type="checkbox"
+                      class="w-4 h-4 rounded border-border-strong accent-[var(--color-accent)]"
+                      checked
+                    />
+                    <span class="text-sm text-text">Qualified</span>
+                  </label>
+                  <label
+                    class="flex items-center gap-2.5 px-2.5 py-2 rounded-lg hover:bg-subtle cursor-pointer transition-colors duration-200"
+                  >
+                    <input
+                      type="checkbox"
+                      class="w-4 h-4 rounded border-border-strong accent-[var(--color-accent)]"
+                    />
+                    <span class="text-sm text-text">Won</span>
+                  </label>
+                  <label
+                    class="flex items-center gap-2.5 px-2.5 py-2 rounded-lg hover:bg-subtle cursor-pointer transition-colors duration-200"
+                  >
+                    <input
+                      type="checkbox"
+                      class="w-4 h-4 rounded border-border-strong accent-[var(--color-accent)]"
+                    />
+                    <span class="text-sm text-text">Lost</span>
+                  </label>
+                  <div class="my-1 h-px bg-border"></div>
+                  <button
+                    data-dropdown-close
+                    class="w-full h-9 rounded-lg bg-heading text-card text-sm font-semibold hover:opacity-90 transition-opacity"
+                  >
+                    Apply filter
+                  </button>
+                </div>
+              </div>
+
+              <button
+                id="export-trigger"
+                class="inline-flex items-center gap-2 h-10 px-4 rounded-xl bg-heading text-card text-sm font-semibold hover:opacity-90 transition-opacity duration-200"
+              >
+                <i class="ph ph-download-simple text-base"></i>
+                <span>Export all</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- ══════════════════════════════════════════════════════
+               TAB PANELS
+               ══════════════════════════════════════════════════════ -->
+          <!-- ── Overview tab ────────────────────────────────────── -->
+          <div id="tab-overview" class="space-y-5">
+            <!-- ── KPI row: 3 stat cards ────────────────────────────── -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
+              <!-- Total sales -->
+              <div class="card p-5 flex flex-col gap-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="w-8 h-8 rounded-lg bg-info/10 flex items-center justify-center shrink-0"
+                    >
+                      <i class="ph ph-currency-dollar text-base text-info"></i>
+                    </span>
+                    <p class="text-sm font-medium text-muted">Total sales</p>
+                  </div>
+                  <div class="relative" data-dropdown>
+                    <button
+                      data-dropdown-trigger
+                      class="w-7 h-7 rounded-lg flex items-center justify-center text-muted hover:bg-subtle hover:text-heading transition-colors duration-200"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <i class="ph ph-dots-three-vertical text-lg"></i>
+                    </button>
+                    <div
+                      data-dropdown-menu
+                      class="absolute right-0 top-full mt-1.5 w-44 card !rounded-2xl shadow-xl shadow-black/5 p-1.5 opacity-0 pointer-events-none scale-95 origin-top-right transition-all duration-200 z-50"
+                      role="menu"
+                    >
+                      <button
+                        class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                        role="menuitem"
+                      >
+                        <i class="ph ph-eye text-base text-muted"></i> View
+                        details
+                      </button>
+                      <button
+                        class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                        role="menuitem"
+                      >
+                        <i
+                          class="ph ph-download-simple text-base text-muted"
+                        ></i>
+                        Export
+                      </button>
+                      <button
+                        class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                        role="menuitem"
+                      >
+                        <i class="ph ph-eye-slash text-base text-muted"></i>
+                        Hide card
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-wrap items-center gap-2.5">
+                  <span
+                    class="text-2xl lg:text-3xl leading-none font-bold text-heading tabular-nums"
+                    >$28.500</span
+                  >
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-positive/10 text-positive text-xs font-semibold"
+                  >
+                    <i class="ph-fill ph-arrow-up text-[10px]"></i>10.2%
+                  </span>
+                </div>
+                <div class="-mx-5 -mb-5">
+                  <div id="kpi-chart-sales"></div>
+                  <p class="px-5 pb-4 text-xs text-muted">VS last week</p>
+                </div>
+              </div>
+
+              <!-- Operating expenses -->
+              <div class="card p-5 flex flex-col gap-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="w-8 h-8 rounded-lg bg-warn/10 flex items-center justify-center shrink-0"
+                    >
+                      <i class="ph ph-calendar-check text-base text-warn"></i>
+                    </span>
+                    <p class="text-sm font-medium text-muted">
+                      Operating expenses
+                    </p>
+                  </div>
+                  <div class="relative" data-dropdown>
+                    <button
+                      data-dropdown-trigger
+                      class="w-7 h-7 rounded-lg flex items-center justify-center text-muted hover:bg-subtle hover:text-heading transition-colors duration-200"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <i class="ph ph-dots-three-vertical text-lg"></i>
+                    </button>
+                    <div
+                      data-dropdown-menu
+                      class="absolute right-0 top-full mt-1.5 w-44 card !rounded-2xl shadow-xl shadow-black/5 p-1.5 opacity-0 pointer-events-none scale-95 origin-top-right transition-all duration-200 z-50"
+                      role="menu"
+                    >
+                      <button
+                        class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                        role="menuitem"
+                      >
+                        <i class="ph ph-eye text-base text-muted"></i> View
+                        details
+                      </button>
+                      <button
+                        class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                        role="menuitem"
+                      >
+                        <i
+                          class="ph ph-download-simple text-base text-muted"
+                        ></i>
+                        Export
+                      </button>
+                      <button
+                        class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                        role="menuitem"
+                      >
+                        <i class="ph ph-eye-slash text-base text-muted"></i>
+                        Hide card
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-wrap items-center gap-2.5">
+                  <span
+                    class="text-2xl lg:text-3xl leading-none font-bold text-heading tabular-nums"
+                    >$18.200</span
+                  >
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-negative/10 text-negative text-xs font-semibold"
+                  >
+                    <i class="ph-fill ph-arrow-down text-[10px]"></i>5.75%
+                  </span>
+                </div>
+                <div class="-mx-5 -mb-5">
+                  <div id="kpi-chart-expenses"></div>
+                  <p class="px-5 pb-4 text-xs text-muted">VS last week</p>
+                </div>
+              </div>
+
+              <!-- Gross profit -->
+              <div class="card p-5 flex flex-col gap-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="w-8 h-8 rounded-lg bg-positive/10 flex items-center justify-center shrink-0"
+                    >
+                      <i
+                        class="ph ph-chart-line-up text-base text-positive"
+                      ></i>
+                    </span>
+                    <p class="text-sm font-medium text-muted">Gross profit</p>
+                  </div>
+                  <div class="relative" data-dropdown>
+                    <button
+                      data-dropdown-trigger
+                      class="w-7 h-7 rounded-lg flex items-center justify-center text-muted hover:bg-subtle hover:text-heading transition-colors duration-200"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <i class="ph ph-dots-three-vertical text-lg"></i>
+                    </button>
+                    <div
+                      data-dropdown-menu
+                      class="absolute right-0 top-full mt-1.5 w-44 card !rounded-2xl shadow-xl shadow-black/5 p-1.5 opacity-0 pointer-events-none scale-95 origin-top-right transition-all duration-200 z-50"
+                      role="menu"
+                    >
+                      <button
+                        class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                        role="menuitem"
+                      >
+                        <i class="ph ph-eye text-base text-muted"></i> View
+                        details
+                      </button>
+                      <button
+                        class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                        role="menuitem"
+                      >
+                        <i
+                          class="ph ph-download-simple text-base text-muted"
+                        ></i>
+                        Export
+                      </button>
+                      <button
+                        class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                        role="menuitem"
+                      >
+                        <i class="ph ph-eye-slash text-base text-muted"></i>
+                        Hide card
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-wrap items-center gap-2.5">
+                  <span
+                    class="text-2xl lg:text-3xl leading-none font-bold text-heading tabular-nums"
+                    >$22.500</span
+                  >
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-positive/10 text-positive text-xs font-semibold"
+                  >
+                    <i class="ph-fill ph-arrow-up text-[10px]"></i>8.55%
+                  </span>
+                </div>
+                <div class="-mx-5 -mb-5">
+                  <div id="kpi-chart-profit"></div>
+                  <p class="px-5 pb-4 text-xs text-muted">VS last week</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- ── Charts row: revenue forecast + source ────────────── -->
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-5">
+              <!-- Revenue forecast -->
+              <div class="card p-5 xl:col-span-2 flex flex-col min-w-0">
+                <div class="flex items-start justify-between gap-3 flex-wrap">
+                  <h2 class="text-base font-bold text-heading">
+                    Revenue forecast
+                  </h2>
+                  <div class="flex items-center gap-2.5">
+                    <!-- Period dropdown -->
+                    <div class="relative" data-dropdown>
+                      <button
+                        data-dropdown-trigger
+                        class="inline-flex items-center gap-2 h-9 px-3 rounded-lg border border-border bg-card text-sm font-medium text-text hover:bg-subtle transition-colors duration-200"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        <i
+                          class="ph ph-calendar-blank text-base text-muted"
+                        ></i>
+                        <span data-period-label>Monthly</span>
+                        <i class="ph ph-caret-down text-xs text-muted"></i>
+                      </button>
+                      <div
+                        data-dropdown-menu
+                        class="absolute right-0 top-full mt-2 w-40 card !rounded-2xl shadow-xl shadow-black/5 p-1.5 opacity-0 pointer-events-none scale-95 origin-top-right transition-all duration-200 z-50"
+                        role="menu"
+                      >
+                        <button
+                          data-period
+                          class="flex items-center justify-between w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                          role="menuitem"
+                        >
+                          Daily
+                        </button>
+                        <button
+                          data-period
+                          class="flex items-center justify-between w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                          role="menuitem"
+                        >
+                          Weekly
+                        </button>
+                        <button
+                          data-period
+                          class="flex items-center justify-between w-full px-3 py-2 rounded-lg text-sm font-semibold text-heading bg-subtle"
+                          role="menuitem"
+                        >
+                          Monthly <i class="ph-bold ph-check text-accent"></i>
+                        </button>
+                        <button
+                          data-period
+                          class="flex items-center justify-between w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                          role="menuitem"
+                        >
+                          Yearly
+                        </button>
+                      </div>
+                    </div>
+                    <!-- Options menu -->
+                    <div class="relative" data-dropdown>
+                      <button
+                        data-dropdown-trigger
+                        class="w-9 h-9 rounded-lg flex items-center justify-center text-muted hover:bg-subtle hover:text-heading transition-colors duration-200"
+                        aria-label="Options"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        <i class="ph ph-dots-three-vertical text-lg"></i>
+                      </button>
+                      <div
+                        data-dropdown-menu
+                        class="absolute right-0 top-full mt-2 w-48 card !rounded-2xl shadow-xl shadow-black/5 p-1.5 opacity-0 pointer-events-none scale-95 origin-top-right transition-all duration-200 z-50"
+                        role="menu"
+                      >
+                        <button
+                          class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                          role="menuitem"
+                        >
+                          <i
+                            class="ph ph-arrow-clockwise text-base text-muted"
+                          ></i>
+                          Refresh
+                        </button>
+                        <button
+                          class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                          role="menuitem"
+                        >
+                          <i
+                            class="ph ph-download-simple text-base text-muted"
+                          ></i>
+                          Download
+                        </button>
+                        <button
+                          class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                          role="menuitem"
+                        >
+                          <i
+                            class="ph ph-share-network text-base text-muted"
+                          ></i>
+                          Share
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Chart -->
+                <div class="mt-3 flex-1 min-w-0">
+                  <div id="revenue-chart" class="w-full h-[300px]"></div>
+                </div>
+
+                <!-- Legend -->
+                <div
+                  class="flex items-center justify-center gap-5 flex-wrap pt-4 border-t border-border mt-1"
+                >
+                  <span
+                    class="inline-flex items-center gap-2 text-xs font-medium text-text"
+                  >
+                    <span
+                      class="w-2.5 h-2.5 rounded-full"
+                      style="background: var(--color-series-purple)"
+                    ></span>
+                    Profit margin
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-2 text-xs font-medium text-text"
+                  >
+                    <span
+                      class="w-2.5 h-2.5 rounded-full"
+                      style="background: var(--color-series-orange)"
+                    ></span>
+                    Operating expenses
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-2 text-xs font-medium text-text"
+                  >
+                    <span
+                      class="w-2.5 h-2.5 rounded-full"
+                      style="background: var(--color-series-blue)"
+                    ></span>
+                    Sales revenue
+                  </span>
+                </div>
+              </div>
+
+              <!-- Source -->
+              <div class="card p-5 flex flex-col">
+                <div class="flex items-start justify-between gap-3">
+                  <h2 class="text-base font-bold text-heading">Source</h2>
+                  <div class="flex items-center gap-2.5">
+                    <!-- Source category dropdown -->
+                    <div class="relative" data-dropdown>
+                      <button
+                        data-dropdown-trigger
+                        class="inline-flex items-center gap-2 h-9 px-3 rounded-lg border border-border bg-card text-sm font-medium text-text hover:bg-subtle transition-colors duration-200"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        <span data-source-label>Contacts</span>
+                        <i class="ph ph-caret-down text-xs text-muted"></i>
+                      </button>
+                      <div
+                        data-dropdown-menu
+                        class="absolute right-0 top-full mt-2 w-40 card !rounded-2xl shadow-xl shadow-black/5 p-1.5 opacity-0 pointer-events-none scale-95 origin-top-right transition-all duration-200 z-50"
+                        role="menu"
+                      >
+                        <button
+                          data-source
+                          class="flex items-center justify-between w-full px-3 py-2 rounded-lg text-sm font-semibold text-heading bg-subtle"
+                          role="menuitem"
+                        >
+                          Contacts <i class="ph-bold ph-check text-accent"></i>
+                        </button>
+                        <button
+                          data-source
+                          class="flex items-center justify-between w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                          role="menuitem"
+                        >
+                          Deals
+                        </button>
+                        <button
+                          data-source
+                          class="flex items-center justify-between w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                          role="menuitem"
+                        >
+                          Revenue
+                        </button>
+                      </div>
+                    </div>
+                    <!-- Options menu -->
+                    <div class="relative" data-dropdown>
+                      <button
+                        data-dropdown-trigger
+                        class="w-9 h-9 rounded-lg flex items-center justify-center text-muted hover:bg-subtle hover:text-heading transition-colors duration-200"
+                        aria-label="Options"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        <i class="ph ph-dots-three-vertical text-lg"></i>
+                      </button>
+                      <div
+                        data-dropdown-menu
+                        class="absolute right-0 top-full mt-2 w-48 card !rounded-2xl shadow-xl shadow-black/5 p-1.5 opacity-0 pointer-events-none scale-95 origin-top-right transition-all duration-200 z-50"
+                        role="menu"
+                      >
+                        <button
+                          class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                          role="menuitem"
+                        >
+                          <i
+                            class="ph ph-arrow-clockwise text-base text-muted"
+                          ></i>
+                          Refresh
+                        </button>
+                        <button
+                          class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                          role="menuitem"
+                        >
+                          <i class="ph ph-eye text-base text-muted"></i> View
+                          report
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Gauge (ApexCharts donut) -->
+                <div class="mt-1 -mx-3">
+                  <div id="source-gauge"></div>
+                </div>
+
+                <!-- Breakdown — rendered by charts.js -->
+                <div
+                  id="source-breakdown"
+                  class="mt-auto space-y-2.5 pt-2"
+                ></div>
+                <button
+                  class="mt-3 w-full h-10 rounded-xl border border-border bg-card text-sm font-semibold text-heading hover:bg-subtle transition-colors duration-200"
+                >
+                  View details
+                </button>
+              </div>
+            </div>
+
+            <!-- ── Table data sales ─────────────────────────────────── -->
+            <div class="card overflow-hidden">
+              <!-- Table header -->
+              <div
+                class="flex flex-wrap items-center sm:justify-between gap-3 p-5"
+              >
+                <h2 class="text-base font-bold text-heading shrink-0">
+                  Table data sales
+                </h2>
+                <div class="flex flex-wrap items-center gap-2.5">
+                  <button
+                    data-search-open
+                    class="relative h-10 w-full sm:w-56 sm:flex-none pl-9 pr-3 rounded-xl bg-subtle border border-border text-sm text-muted text-left hover:border-border-strong transition-colors duration-200"
+                  >
+                    <i
+                      class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-muted text-base"
+                    ></i>
+                    Search data
+                  </button>
+                  <!-- Sort by -->
+                  <div class="relative" data-dropdown>
+                    <button
+                      data-dropdown-trigger
+                      class="inline-flex items-center gap-2 h-10 px-3.5 rounded-xl border border-border bg-card text-sm font-medium text-text hover:bg-subtle transition-colors duration-200"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <i class="ph ph-arrows-down-up text-base text-muted"></i>
+                      <span class="hidden sm:inline">Sort by</span>
+                      <i class="ph ph-caret-down text-xs text-muted"></i>
+                    </button>
+                    <div
+                      data-dropdown-menu
+                      class="absolute right-0 top-full mt-2 w-48 card !rounded-2xl shadow-xl shadow-black/5 p-1.5 opacity-0 pointer-events-none scale-95 origin-top-right transition-all duration-200 z-50"
+                      role="menu"
+                    >
+                      <button
+                        class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                        role="menuitem"
+                      >
+                        <i
+                          class="ph ph-sort-ascending text-base text-muted"
+                        ></i>
+                        Price: High to low
+                      </button>
+                      <button
+                        class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                        role="menuitem"
+                      >
+                        <i
+                          class="ph ph-sort-descending text-base text-muted"
+                        ></i>
+                        Price: Low to high
+                      </button>
+                      <button
+                        class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                        role="menuitem"
+                      >
+                        <i
+                          class="ph ph-calendar-blank text-base text-muted"
+                        ></i>
+                        Date created
+                      </button>
+                      <button
+                        class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                        role="menuitem"
+                      >
+                        <i class="ph ph-text-aa text-base text-muted"></i> Deal
+                        name (A–Z)
+                      </button>
+                    </div>
+                  </div>
+                  <!-- Filter -->
+                  <div class="relative" data-dropdown>
+                    <button
+                      data-dropdown-trigger
+                      class="inline-flex items-center gap-2 h-10 px-3.5 rounded-xl border border-border bg-card text-sm font-medium text-text hover:bg-subtle transition-colors duration-200"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <i
+                        class="ph ph-sliders-horizontal text-base text-muted"
+                      ></i>
+                      <span class="hidden sm:inline">Filter</span>
+                    </button>
+                    <div
+                      data-dropdown-menu
+                      class="absolute right-0 top-full mt-2 w-52 card !rounded-2xl shadow-xl shadow-black/5 p-2 opacity-0 pointer-events-none scale-95 origin-top-right transition-all duration-200 z-50"
+                      role="menu"
+                    >
+                      <p
+                        class="px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-muted/70"
+                      >
+                        Owner
+                      </p>
+                      <label
+                        class="flex items-center gap-2.5 px-2.5 py-2 rounded-lg hover:bg-subtle cursor-pointer transition-colors duration-200"
+                      >
+                        <input
+                          type="checkbox"
+                          class="w-4 h-4 rounded border-border-strong accent-[var(--color-accent)]"
+                          checked
+                        />
+                        <span class="text-sm text-text">Ardian Maulana</span>
+                      </label>
+                      <label
+                        class="flex items-center gap-2.5 px-2.5 py-2 rounded-lg hover:bg-subtle cursor-pointer transition-colors duration-200"
+                      >
+                        <input
+                          type="checkbox"
+                          class="w-4 h-4 rounded border-border-strong accent-[var(--color-accent)]"
+                        />
+                        <span class="text-sm text-text">Dwi Wahyu</span>
+                      </label>
+                      <label
+                        class="flex items-center gap-2.5 px-2.5 py-2 rounded-lg hover:bg-subtle cursor-pointer transition-colors duration-200"
+                      >
+                        <input
+                          type="checkbox"
+                          class="w-4 h-4 rounded border-border-strong accent-[var(--color-accent)]"
+                        />
+                        <span class="text-sm text-text">Adinda Ayu</span>
+                      </label>
+                    </div>
+                  </div>
+                  <!-- More -->
+                  <div class="relative" data-dropdown>
+                    <button
+                      data-dropdown-trigger
+                      class="w-10 h-10 rounded-xl border border-border bg-card flex items-center justify-center text-muted hover:bg-subtle hover:text-heading transition-colors duration-200"
+                      aria-label="More"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <i class="ph ph-dots-three text-lg"></i>
+                    </button>
+                    <div
+                      data-dropdown-menu
+                      class="absolute right-0 top-full mt-2 w-48 card !rounded-2xl shadow-xl shadow-black/5 p-1.5 opacity-0 pointer-events-none scale-95 origin-top-right transition-all duration-200 z-50"
+                      role="menu"
+                    >
+                      <a class='flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200' href='add-deal.html' role='menuitem'>
+                        <i class="ph ph-plus text-base text-muted"></i> Add deal
+                      </a>
+                      <a class='flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200' href='import-csv.html' role='menuitem'>
+                        <i class="ph ph-file-csv text-base text-muted"></i>
+                        Import CSV
+                      </a>
+                      <button
+                        class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                        role="menuitem"
+                      >
+                        <i class="ph ph-columns text-base text-muted"></i>
+                        Manage columns
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Table -->
+              <div class="overflow-x-auto">
+                <table class="w-full min-w-[820px] text-left">
+                  <thead>
+                    <tr class="border-y border-border bg-subtle/50">
+                      <th class="px-5 py-3 w-10">
+                        <input
+                          type="checkbox"
+                          class="w-4 h-4 rounded border-border-strong accent-[var(--color-accent)]"
+                        />
+                      </th>
+                      <th
+                        class="px-3 py-3 text-xs font-semibold text-muted uppercase tracking-wide"
+                      >
+                        <span class="inline-flex items-center gap-1"
+                          >Deal name <i class="ph ph-caret-up-down text-xs"></i
+                        ></span>
+                      </th>
+                      <th
+                        class="px-3 py-3 text-xs font-semibold text-muted uppercase tracking-wide"
+                      >
+                        <span class="inline-flex items-center gap-1"
+                          >Company <i class="ph ph-caret-up-down text-xs"></i
+                        ></span>
+                      </th>
+                      <th
+                        class="px-3 py-3 text-xs font-semibold text-muted uppercase tracking-wide"
+                      >
+                        <span class="inline-flex items-center gap-1"
+                          >Price <i class="ph ph-caret-up-down text-xs"></i
+                        ></span>
+                      </th>
+                      <th
+                        class="px-3 py-3 text-xs font-semibold text-muted uppercase tracking-wide"
+                      >
+                        <span class="inline-flex items-center gap-1"
+                          >Date created
+                          <i class="ph ph-caret-up-down text-xs"></i
+                        ></span>
+                      </th>
+                      <th
+                        class="px-3 py-3 text-xs font-semibold text-muted uppercase tracking-wide"
+                      >
+                        <span class="inline-flex items-center gap-1"
+                          >Owner <i class="ph ph-caret-up-down text-xs"></i
+                        ></span>
+                      </th>
+                      <th
+                        class="px-3 py-3 text-xs font-semibold text-muted uppercase tracking-wide"
+                      >
+                        <span class="inline-flex items-center gap-1"
+                          >Stage <i class="ph ph-caret-up-down text-xs"></i
+                        ></span>
+                      </th>
+                      <th class="px-5 py-3 w-10"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="deals-table-body"></tbody>
+                </table>
+              </div>
+
+              <!-- Table footer -->
+              <div
+                class="flex items-center justify-between gap-3 flex-wrap p-5 border-t border-border"
+              >
+                <p class="text-sm text-muted">
+                  Showing <span class="font-semibold text-heading">1–6</span> of
+                  <span class="font-semibold text-heading">42</span> deals
+                </p>
+                <div class="flex items-center gap-1.5">
+                  <button
+                    class="w-9 h-9 rounded-lg border border-border bg-card flex items-center justify-center text-muted hover:bg-subtle hover:text-heading transition-colors duration-200"
+                    aria-label="Previous"
+                  >
+                    <i class="ph ph-caret-left text-base"></i>
+                  </button>
+                  <button
+                    class="w-9 h-9 rounded-lg bg-heading text-card text-sm font-semibold"
+                  >
+                    1
+                  </button>
+                  <button
+                    class="w-9 h-9 rounded-lg border border-border bg-card text-sm font-medium text-text hover:bg-subtle transition-colors duration-200"
+                  >
+                    2
+                  </button>
+                  <button
+                    class="w-9 h-9 rounded-lg border border-border bg-card text-sm font-medium text-text hover:bg-subtle transition-colors duration-200"
+                  >
+                    3
+                  </button>
+                  <button
+                    class="w-9 h-9 rounded-lg border border-border bg-card flex items-center justify-center text-muted hover:bg-subtle hover:text-heading transition-colors duration-200"
+                    aria-label="Next"
+                  >
+                    <i class="ph ph-caret-right text-base"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /tab-overview -->
+
+          <!-- ── Sales tab ────────────────────────────────────────── -->
+          <div id="tab-sales" class="hidden space-y-5">
+            <!-- KPI row -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 md:gap-5">
+              <!-- Total revenue -->
+              <div class="card p-5 flex flex-col gap-2">
+                <div class="flex items-center gap-2">
+                  <span
+                    class="w-8 h-8 rounded-lg bg-positive/10 flex items-center justify-center shrink-0"
+                  >
+                    <i class="ph ph-trend-up text-base text-positive"></i>
+                  </span>
+                  <p class="text-sm font-medium text-muted">Total Revenue</p>
+                </div>
+                <span
+                  class="text-2xl lg:text-3xl leading-none font-bold text-heading tabular-nums"
+                  >$142.8K</span
+                >
+                <span
+                  class="inline-flex items-center gap-1 text-xs font-semibold text-positive"
+                >
+                  <i class="ph-fill ph-arrow-up text-[10px]"></i>14.3% vs last
+                  month
+                </span>
+              </div>
+              <!-- New customers -->
+              <div class="card p-5 flex flex-col gap-2">
+                <div class="flex items-center gap-2">
+                  <span
+                    class="w-8 h-8 rounded-lg bg-info/10 flex items-center justify-center shrink-0"
+                  >
+                    <i class="ph ph-users text-base text-info"></i>
+                  </span>
+                  <p class="text-sm font-medium text-muted">New Customers</p>
+                </div>
+                <span
+                  class="text-2xl lg:text-3xl leading-none font-bold text-heading tabular-nums"
+                  >1,248</span
+                >
+                <span
+                  class="inline-flex items-center gap-1 text-xs font-semibold text-positive"
+                >
+                  <i class="ph-fill ph-arrow-up text-[10px]"></i>8.7% vs last
+                  month
+                </span>
+              </div>
+              <!-- Avg deal size -->
+              <div class="card p-5 flex flex-col gap-2">
+                <div class="flex items-center gap-2">
+                  <span
+                    class="w-8 h-8 rounded-lg bg-warn/10 flex items-center justify-center shrink-0"
+                  >
+                    <i class="ph ph-handshake text-base text-warn"></i>
+                  </span>
+                  <p class="text-sm font-medium text-muted">Avg Deal Size</p>
+                </div>
+                <span
+                  class="text-2xl lg:text-3xl leading-none font-bold text-heading tabular-nums"
+                  >$3.4K</span
+                >
+                <span
+                  class="inline-flex items-center gap-1 text-xs font-semibold text-negative"
+                >
+                  <i class="ph-fill ph-arrow-down text-[10px]"></i>2.1% vs last
+                  month
+                </span>
+              </div>
+              <!-- Conversion rate -->
+              <div class="card p-5 flex flex-col gap-2">
+                <div class="flex items-center gap-2">
+                  <span
+                    class="w-8 h-8 rounded-lg bg-[color-mix(in_srgb,var(--color-series-purple)_12%,transparent)] flex items-center justify-center shrink-0"
+                  >
+                    <i
+                      class="ph ph-percent text-base"
+                      style="color: var(--color-series-purple)"
+                    ></i>
+                  </span>
+                  <p class="text-sm font-medium text-muted">Conversion Rate</p>
+                </div>
+                <span
+                  class="text-2xl lg:text-3xl leading-none font-bold text-heading tabular-nums"
+                  >24.6%</span
+                >
+                <span
+                  class="inline-flex items-center gap-1 text-xs font-semibold text-positive"
+                >
+                  <i class="ph-fill ph-arrow-up text-[10px]"></i>3.5% vs last
+                  month
+                </span>
+              </div>
+            </div>
+
+            <!-- Sales by channel + Top performers -->
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-5">
+              <!-- Sales by channel -->
+              <div class="card p-5 xl:col-span-2 flex flex-col gap-4">
+                <div class="flex items-center justify-between flex-wrap gap-2">
+                  <h2 class="text-base font-bold text-heading">
+                    Sales by Channel
+                  </h2>
+                  <span class="text-xs text-muted">Last 30 days</span>
+                </div>
+                <div class="space-y-3">
+                  <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                      <span class="text-sm text-text">Direct Sales</span>
+                      <span class="text-sm font-semibold text-heading"
+                        >$58.4K
+                        <span class="text-xs font-medium text-muted"
+                          >41%</span
+                        ></span
+                      >
+                    </div>
+                    <div class="h-2 rounded-full bg-subtle overflow-hidden">
+                      <div
+                        class="h-full rounded-full"
+                        style="width: 41%; background: var(--color-series-blue)"
+                      ></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                      <span class="text-sm text-text">Online Store</span>
+                      <span class="text-sm font-semibold text-heading"
+                        >$42.1K
+                        <span class="text-xs font-medium text-muted"
+                          >30%</span
+                        ></span
+                      >
+                    </div>
+                    <div class="h-2 rounded-full bg-subtle overflow-hidden">
+                      <div
+                        class="h-full rounded-full"
+                        style="
+                          width: 30%;
+                          background: var(--color-series-purple);
+                        "
+                      ></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                      <span class="text-sm text-text">Partners</span>
+                      <span class="text-sm font-semibold text-heading"
+                        >$27.0K
+                        <span class="text-xs font-medium text-muted"
+                          >19%</span
+                        ></span
+                      >
+                    </div>
+                    <div class="h-2 rounded-full bg-subtle overflow-hidden">
+                      <div
+                        class="h-full rounded-full"
+                        style="
+                          width: 19%;
+                          background: var(--color-series-orange);
+                        "
+                      ></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                      <span class="text-sm text-text">Resellers</span>
+                      <span class="text-sm font-semibold text-heading"
+                        >$15.3K
+                        <span class="text-xs font-medium text-muted"
+                          >10%</span
+                        ></span
+                      >
+                    </div>
+                    <div class="h-2 rounded-full bg-subtle overflow-hidden">
+                      <div
+                        class="h-full rounded-full"
+                        style="
+                          width: 10%;
+                          background: var(--color-series-green);
+                        "
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Monthly target progress -->
+                <div class="mt-1 pt-4 border-t border-border">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-medium text-muted"
+                      >Monthly Target</span
+                    >
+                    <span class="text-sm font-bold text-heading"
+                      >$142.8K / $160K</span
+                    >
+                  </div>
+                  <div class="h-2.5 rounded-full bg-subtle overflow-hidden">
+                    <div
+                      class="h-full rounded-full bg-positive transition-all duration-500"
+                      style="width: 89%"
+                    ></div>
+                  </div>
+                  <p class="mt-1.5 text-xs text-muted">
+                    89% of monthly target achieved
+                  </p>
+                </div>
+              </div>
+
+              <!-- Top performers -->
+              <div class="card p-5 flex flex-col gap-4">
+                <h2 class="text-base font-bold text-heading">Top Performers</h2>
+                <div class="space-y-3">
+                  <div class="flex items-center gap-3">
+                    <img
+                      src="assets/images/user4.png"
+                      alt=""
+                      class="w-9 h-9 rounded-full object-cover shrink-0"
+                    />
+                    <div class="flex-1 min-w-0">
+                      <p class="text-sm font-semibold text-heading truncate">
+                        Ardian Maulana
+                      </p>
+                      <p class="text-xs text-muted">$48.2K closed</p>
+                    </div>
+                    <span
+                      class="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-positive/10 text-positive text-xs font-semibold shrink-0"
+                    >
+                      <i class="ph-fill ph-arrow-up text-[10px]"></i>22%
+                    </span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <img
+                      src="assets/images/user6.png"
+                      alt=""
+                      class="w-9 h-9 rounded-full object-cover shrink-0"
+                    />
+                    <div class="flex-1 min-w-0">
+                      <p class="text-sm font-semibold text-heading truncate">
+                        Dwi Wahyu
+                      </p>
+                      <p class="text-xs text-muted">$36.7K closed</p>
+                    </div>
+                    <span
+                      class="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-positive/10 text-positive text-xs font-semibold shrink-0"
+                    >
+                      <i class="ph-fill ph-arrow-up text-[10px]"></i>17%
+                    </span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <img
+                      src="assets/images/user5.png"
+                      alt=""
+                      class="w-9 h-9 rounded-full object-cover shrink-0"
+                    />
+                    <div class="flex-1 min-w-0">
+                      <p class="text-sm font-semibold text-heading truncate">
+                        Adinda Ayu
+                      </p>
+                      <p class="text-xs text-muted">$29.1K closed</p>
+                    </div>
+                    <span
+                      class="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-negative/10 text-negative text-xs font-semibold shrink-0"
+                    >
+                      <i class="ph-fill ph-arrow-down text-[10px]"></i>4%
+                    </span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <img
+                      src="assets/images/user7.png"
+                      alt=""
+                      class="w-9 h-9 rounded-full object-cover shrink-0"
+                    />
+                    <div class="flex-1 min-w-0">
+                      <p class="text-sm font-semibold text-heading truncate">
+                        Galih Adi
+                      </p>
+                      <p class="text-xs text-muted">$21.4K closed</p>
+                    </div>
+                    <span
+                      class="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-positive/10 text-positive text-xs font-semibold shrink-0"
+                    >
+                      <i class="ph-fill ph-arrow-up text-[10px]"></i>9%
+                    </span>
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <img
+                      src="assets/images/user8.png"
+                      alt=""
+                      class="w-9 h-9 rounded-full object-cover shrink-0"
+                    />
+                    <div class="flex-1 min-w-0">
+                      <p class="text-sm font-semibold text-heading truncate">
+                        Hendra K.
+                      </p>
+                      <p class="text-xs text-muted">$7.4K closed</p>
+                    </div>
+                    <span
+                      class="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-positive/10 text-positive text-xs font-semibold shrink-0"
+                    >
+                      <i class="ph-fill ph-arrow-up text-[10px]"></i>5%
+                    </span>
+                  </div>
+                </div>
+                <button
+                  class="mt-auto w-full h-9 rounded-xl border border-border bg-card text-sm font-semibold text-heading hover:bg-subtle transition-colors duration-200"
+                >
+                  View all reps
+                </button>
+              </div>
+            </div>
+
+            <!-- Recent sales table -->
+            <div class="card overflow-hidden">
+              <div
+                class="flex items-center justify-between flex-wrap gap-3 p-5"
+              >
+                <h2 class="text-base font-bold text-heading">Recent Sales</h2>
+                <button
+                  class="inline-flex items-center gap-2 h-9 px-4 rounded-xl border border-border bg-card text-sm font-medium text-text hover:bg-subtle transition-colors duration-200"
+                >
+                  <i class="ph ph-download-simple text-base text-muted"></i>
+                  Export
+                </button>
+              </div>
+              <div class="overflow-x-auto whitespace-nowrap">
+                <table class="w-full min-w-[600px] text-left">
+                  <thead>
+                    <tr class="border-y border-border bg-subtle/50">
+                      <th
+                        class="px-5 py-3 text-xs font-semibold text-muted uppercase tracking-wide"
+                      >
+                        Customer
+                      </th>
+                      <th
+                        class="px-3 py-3 text-xs font-semibold text-muted uppercase tracking-wide"
+                      >
+                        Product
+                      </th>
+                      <th
+                        class="px-3 py-3 text-xs font-semibold text-muted uppercase tracking-wide"
+                      >
+                        Amount
+                      </th>
+                      <th
+                        class="px-3 py-3 text-xs font-semibold text-muted uppercase tracking-wide"
+                      >
+                        Date
+                      </th>
+                      <th
+                        class="px-5 py-3 text-xs font-semibold text-muted uppercase tracking-wide"
+                      >
+                        Status
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-border">
+                    <tr
+                      class="hover:bg-subtle/50 transition-colors duration-150"
+                    >
+                      <td class="px-5 py-3.5">
+                        <div class="flex items-center gap-2.5">
+                          <img
+                            src="assets/images/user4.png"
+                            alt=""
+                            class="w-7 h-7 rounded-full object-cover shrink-0"
+                          />
+                          <span class="text-sm font-medium text-heading"
+                            >Ardian Maulana</span
+                          >
+                        </div>
+                      </td>
+                      <td class="px-3 py-3.5 text-sm text-text">
+                        Cloud Infrastructure
+                      </td>
+                      <td
+                        class="px-3 py-3.5 text-sm font-semibold text-heading tabular-nums"
+                      >
+                        $850,000
+                      </td>
+                      <td class="px-3 py-3.5 text-sm text-muted">
+                        12 Jan 2025
+                      </td>
+                      <td class="px-5 py-3.5">
+                        <span
+                          class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-positive/10 text-positive text-[11px] font-semibold"
+                        >
+                          <span
+                            class="w-1.5 h-1.5 rounded-full bg-positive"
+                          ></span
+                          >Completed
+                        </span>
+                      </td>
+                    </tr>
+                    <tr
+                      class="hover:bg-subtle/50 transition-colors duration-150"
+                    >
+                      <td class="px-5 py-3.5">
+                        <div class="flex items-center gap-2.5">
+                          <img
+                            src="assets/images/user6.png"
+                            alt=""
+                            class="w-7 h-7 rounded-full object-cover shrink-0"
+                          />
+                          <span class="text-sm font-medium text-heading"
+                            >Dwi Wahyu</span
+                          >
+                        </div>
+                      </td>
+                      <td class="px-3 py-3.5 text-sm text-text">
+                        Learning Platform
+                      </td>
+                      <td
+                        class="px-3 py-3.5 text-sm font-semibold text-heading tabular-nums"
+                      >
+                        $420,000
+                      </td>
+                      <td class="px-3 py-3.5 text-sm text-muted">
+                        21 Jan 2025
+                      </td>
+                      <td class="px-5 py-3.5">
+                        <span
+                          class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-warn/10 text-warn text-[11px] font-semibold"
+                        >
+                          <span class="w-1.5 h-1.5 rounded-full bg-warn"></span
+                          >Pending
+                        </span>
+                      </td>
+                    </tr>
+                    <tr
+                      class="hover:bg-subtle/50 transition-colors duration-150"
+                    >
+                      <td class="px-5 py-3.5">
+                        <div class="flex items-center gap-2.5">
+                          <img
+                            src="assets/images/user5.png"
+                            alt=""
+                            class="w-7 h-7 rounded-full object-cover shrink-0"
+                          />
+                          <span class="text-sm font-medium text-heading"
+                            >Adinda Ayu</span
+                          >
+                        </div>
+                      </td>
+                      <td class="px-3 py-3.5 text-sm text-text">
+                        POS System Upgrade
+                      </td>
+                      <td
+                        class="px-3 py-3.5 text-sm font-semibold text-heading tabular-nums"
+                      >
+                        $315,500
+                      </td>
+                      <td class="px-3 py-3.5 text-sm text-muted">
+                        30 Jan 2025
+                      </td>
+                      <td class="px-5 py-3.5">
+                        <span
+                          class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-positive/10 text-positive text-[11px] font-semibold"
+                        >
+                          <span
+                            class="w-1.5 h-1.5 rounded-full bg-positive"
+                          ></span
+                          >Completed
+                        </span>
+                      </td>
+                    </tr>
+                    <tr
+                      class="hover:bg-subtle/50 transition-colors duration-150"
+                    >
+                      <td class="px-5 py-3.5">
+                        <div class="flex items-center gap-2.5">
+                          <img
+                            src="assets/images/user7.png"
+                            alt=""
+                            class="w-7 h-7 rounded-full object-cover shrink-0"
+                          />
+                          <span class="text-sm font-medium text-heading"
+                            >Galih Adi</span
+                          >
+                        </div>
+                      </td>
+                      <td class="px-3 py-3.5 text-sm text-text">
+                        Brand Identity
+                      </td>
+                      <td
+                        class="px-3 py-3.5 text-sm font-semibold text-heading tabular-nums"
+                      >
+                        $180,000
+                      </td>
+                      <td class="px-3 py-3.5 text-sm text-muted">
+                        04 Feb 2025
+                      </td>
+                      <td class="px-5 py-3.5">
+                        <span
+                          class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-info/10 text-info text-[11px] font-semibold"
+                        >
+                          <span class="w-1.5 h-1.5 rounded-full bg-info"></span
+                          >Processing
+                        </span>
+                      </td>
+                    </tr>
+                    <tr
+                      class="hover:bg-subtle/50 transition-colors duration-150"
+                    >
+                      <td class="px-5 py-3.5">
+                        <div class="flex items-center gap-2.5">
+                          <img
+                            src="assets/images/user8.png"
+                            alt=""
+                            class="w-7 h-7 rounded-full object-cover shrink-0"
+                          />
+                          <span class="text-sm font-medium text-heading"
+                            >Hendra K.</span
+                          >
+                        </div>
+                      </td>
+                      <td class="px-3 py-3.5 text-sm text-text">
+                        Travel Booking API
+                      </td>
+                      <td
+                        class="px-3 py-3.5 text-sm font-semibold text-heading tabular-nums"
+                      >
+                        $96,000
+                      </td>
+                      <td class="px-3 py-3.5 text-sm text-muted">
+                        15 Feb 2025
+                      </td>
+                      <td class="px-5 py-3.5">
+                        <span
+                          class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-positive/10 text-positive text-[11px] font-semibold"
+                        >
+                          <span
+                            class="w-1.5 h-1.5 rounded-full bg-positive"
+                          ></span
+                          >Completed
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- /tab-sales -->
+
+          <!-- ── Order tab ──────────────────────────────────────────── -->
+          <div id="tab-order" class="hidden space-y-5">
+            <!-- Order stats -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 md:gap-5">
+              <div class="card p-5 flex flex-col gap-2">
+                <div class="flex items-center gap-2">
+                  <span
+                    class="w-8 h-8 rounded-lg bg-info/10 flex items-center justify-center shrink-0"
+                  >
+                    <i class="ph ph-package text-base text-info"></i>
+                  </span>
+                  <p class="text-sm font-medium text-muted">Total Orders</p>
+                </div>
+                <span
+                  class="text-2xl lg:text-3xl leading-none font-bold text-heading tabular-nums"
+                  >3,842</span
+                >
+                <span
+                  class="inline-flex items-center gap-1 text-xs font-semibold text-positive"
+                >
+                  <i class="ph-fill ph-arrow-up text-[10px]"></i>11.2% this
+                  month
+                </span>
+              </div>
+              <div class="card p-5 flex flex-col gap-2">
+                <div class="flex items-center gap-2">
+                  <span
+                    class="w-8 h-8 rounded-lg bg-positive/10 flex items-center justify-center shrink-0"
+                  >
+                    <i class="ph ph-check-circle text-base text-positive"></i>
+                  </span>
+                  <p class="text-sm font-medium text-muted">Delivered</p>
+                </div>
+                <span
+                  class="text-2xl lg:text-3xl leading-none font-bold text-heading tabular-nums"
+                  >3,198</span
+                >
+                <span class="text-xs text-muted">83.2% fulfillment rate</span>
+              </div>
+              <div class="card p-5 flex flex-col gap-2">
+                <div class="flex items-center gap-2">
+                  <span
+                    class="w-8 h-8 rounded-lg bg-warn/10 flex items-center justify-center shrink-0"
+                  >
+                    <i class="ph ph-clock text-base text-warn"></i>
+                  </span>
+                  <p class="text-sm font-medium text-muted">Pending</p>
+                </div>
+                <span
+                  class="text-2xl lg:text-3xl leading-none font-bold text-heading tabular-nums"
+                  >512</span
+                >
+                <span
+                  class="inline-flex items-center gap-1 text-xs font-semibold text-negative"
+                >
+                  <i class="ph-fill ph-arrow-up text-[10px]"></i>34 more than
+                  avg
+                </span>
+              </div>
+              <div class="card p-5 flex flex-col gap-2">
+                <div class="flex items-center gap-2">
+                  <span
+                    class="w-8 h-8 rounded-lg bg-negative/10 flex items-center justify-center shrink-0"
+                  >
+                    <i class="ph ph-x-circle text-base text-negative"></i>
+                  </span>
+                  <p class="text-sm font-medium text-muted">Cancelled</p>
+                </div>
+                <span
+                  class="text-2xl lg:text-3xl leading-none font-bold text-heading tabular-nums"
+                  >132</span
+                >
+                <span
+                  class="inline-flex items-center gap-1 text-xs font-semibold text-positive"
+                >
+                  <i class="ph-fill ph-arrow-down text-[10px]"></i>3.4% vs last
+                  month
+                </span>
+              </div>
+            </div>
+
+            <!-- Order status breakdown + Recent orders -->
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-5">
+              <!-- Status breakdown -->
+              <div class="card p-5 flex flex-col gap-4">
+                <h2 class="text-base font-bold text-heading">Order Status</h2>
+                <div class="space-y-3">
+                  <div class="flex items-center gap-3">
+                    <span
+                      class="w-2 h-2 rounded-full bg-positive shrink-0"
+                    ></span>
+                    <span class="flex-1 text-sm text-text">Delivered</span>
+                    <div
+                      class="w-24 h-2 rounded-full bg-subtle overflow-hidden"
+                    >
+                      <div
+                        class="h-full rounded-full bg-positive"
+                        style="width: 83%"
+                      ></div>
+                    </div>
+                    <span
+                      class="w-8 text-right text-sm font-semibold text-heading tabular-nums"
+                      >83%</span
+                    >
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span class="w-2 h-2 rounded-full bg-warn shrink-0"></span>
+                    <span class="flex-1 text-sm text-text">Pending</span>
+                    <div
+                      class="w-24 h-2 rounded-full bg-subtle overflow-hidden"
+                    >
+                      <div
+                        class="h-full rounded-full bg-warn"
+                        style="width: 13%"
+                      ></div>
+                    </div>
+                    <span
+                      class="w-8 text-right text-sm font-semibold text-heading tabular-nums"
+                      >13%</span
+                    >
+                  </div>
+                  <div class="flex items-center gap-3">
+                    <span
+                      class="w-2 h-2 rounded-full bg-negative shrink-0"
+                    ></span>
+                    <span class="flex-1 text-sm text-text">Cancelled</span>
+                    <div
+                      class="w-24 h-2 rounded-full bg-subtle overflow-hidden"
+                    >
+                      <div
+                        class="h-full rounded-full bg-negative"
+                        style="width: 4%"
+                      ></div>
+                    </div>
+                    <span
+                      class="w-8 text-right text-sm font-semibold text-heading tabular-nums"
+                      >4%</span
+                    >
+                  </div>
+                </div>
+                <div class="pt-4 border-t border-border space-y-2">
+                  <div class="flex justify-between text-sm">
+                    <span class="text-muted">Avg delivery time</span>
+                    <span class="font-semibold text-heading">2.4 days</span>
+                  </div>
+                  <div class="flex justify-between text-sm">
+                    <span class="text-muted">Return rate</span>
+                    <span class="font-semibold text-heading">1.8%</span>
+                  </div>
+                  <div class="flex justify-between text-sm">
+                    <span class="text-muted">On-time rate</span>
+                    <span class="font-semibold text-positive">96.3%</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Recent orders table -->
+              <div class="card overflow-hidden xl:col-span-2">
+                <div
+                  class="flex items-center justify-between flex-wrap gap-3 p-5"
+                >
+                  <h2 class="text-base font-bold text-heading">
+                    Recent Orders
+                  </h2>
+                  <button
+                    class="inline-flex items-center gap-2 h-9 px-4 rounded-xl border border-border bg-card text-sm font-medium text-text hover:bg-subtle transition-colors duration-200"
+                  >
+                    View all
+                    <i class="ph ph-arrow-right text-base text-muted"></i>
+                  </button>
+                </div>
+                <div class="overflow-x-auto whitespace-nowrap">
+                  <table class="w-full min-w-[520px] text-left">
+                    <thead>
+                      <tr class="border-y border-border bg-subtle/50">
+                        <th
+                          class="px-5 py-3 text-xs font-semibold text-muted uppercase tracking-wide"
+                        >
+                          Order ID
+                        </th>
+                        <th
+                          class="px-3 py-3 text-xs font-semibold text-muted uppercase tracking-wide"
+                        >
+                          Customer
+                        </th>
+                        <th
+                          class="px-3 py-3 text-xs font-semibold text-muted uppercase tracking-wide"
+                        >
+                          Amount
+                        </th>
+                        <th
+                          class="px-3 py-3 text-xs font-semibold text-muted uppercase tracking-wide"
+                        >
+                          Date
+                        </th>
+                        <th
+                          class="px-5 py-3 text-xs font-semibold text-muted uppercase tracking-wide"
+                        >
+                          Status
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-border">
+                      <tr
+                        class="hover:bg-subtle/50 transition-colors duration-150"
+                      >
+                        <td class="px-5 py-3.5 text-sm font-mono text-muted">
+                          #ORD-4821
+                        </td>
+                        <td
+                          class="px-3 py-3.5 text-sm font-medium text-heading"
+                        >
+                          Ardian Maulana
+                        </td>
+                        <td
+                          class="px-3 py-3.5 text-sm font-semibold text-heading tabular-nums"
+                        >
+                          $12,400
+                        </td>
+                        <td class="px-3 py-3.5 text-sm text-muted">
+                          Jun 28, 2025
+                        </td>
+                        <td class="px-5 py-3.5">
+                          <span
+                            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-positive/10 text-positive text-[11px] font-semibold"
+                          >
+                            <span
+                              class="w-1.5 h-1.5 rounded-full bg-positive"
+                            ></span
+                            >Delivered
+                          </span>
+                        </td>
+                      </tr>
+                      <tr
+                        class="hover:bg-subtle/50 transition-colors duration-150"
+                      >
+                        <td class="px-5 py-3.5 text-sm font-mono text-muted">
+                          #ORD-4820
+                        </td>
+                        <td
+                          class="px-3 py-3.5 text-sm font-medium text-heading"
+                        >
+                          Dwi Wahyu
+                        </td>
+                        <td
+                          class="px-3 py-3.5 text-sm font-semibold text-heading tabular-nums"
+                        >
+                          $8,750
+                        </td>
+                        <td class="px-3 py-3.5 text-sm text-muted">
+                          Jun 27, 2025
+                        </td>
+                        <td class="px-5 py-3.5">
+                          <span
+                            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-warn/10 text-warn text-[11px] font-semibold"
+                          >
+                            <span
+                              class="w-1.5 h-1.5 rounded-full bg-warn"
+                            ></span
+                            >Pending
+                          </span>
+                        </td>
+                      </tr>
+                      <tr
+                        class="hover:bg-subtle/50 transition-colors duration-150"
+                      >
+                        <td class="px-5 py-3.5 text-sm font-mono text-muted">
+                          #ORD-4819
+                        </td>
+                        <td
+                          class="px-3 py-3.5 text-sm font-medium text-heading"
+                        >
+                          Adinda Ayu
+                        </td>
+                        <td
+                          class="px-3 py-3.5 text-sm font-semibold text-heading tabular-nums"
+                        >
+                          $5,200
+                        </td>
+                        <td class="px-3 py-3.5 text-sm text-muted">
+                          Jun 26, 2025
+                        </td>
+                        <td class="px-5 py-3.5">
+                          <span
+                            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-positive/10 text-positive text-[11px] font-semibold"
+                          >
+                            <span
+                              class="w-1.5 h-1.5 rounded-full bg-positive"
+                            ></span
+                            >Delivered
+                          </span>
+                        </td>
+                      </tr>
+                      <tr
+                        class="hover:bg-subtle/50 transition-colors duration-150"
+                      >
+                        <td class="px-5 py-3.5 text-sm font-mono text-muted">
+                          #ORD-4818
+                        </td>
+                        <td
+                          class="px-3 py-3.5 text-sm font-medium text-heading"
+                        >
+                          Galih Adi
+                        </td>
+                        <td
+                          class="px-3 py-3.5 text-sm font-semibold text-heading tabular-nums"
+                        >
+                          $3,800
+                        </td>
+                        <td class="px-3 py-3.5 text-sm text-muted">
+                          Jun 25, 2025
+                        </td>
+                        <td class="px-5 py-3.5">
+                          <span
+                            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-negative/10 text-negative text-[11px] font-semibold"
+                          >
+                            <span
+                              class="w-1.5 h-1.5 rounded-full bg-negative"
+                            ></span
+                            >Cancelled
+                          </span>
+                        </td>
+                      </tr>
+                      <tr
+                        class="hover:bg-subtle/50 transition-colors duration-150"
+                      >
+                        <td class="px-5 py-3.5 text-sm font-mono text-muted">
+                          #ORD-4817
+                        </td>
+                        <td
+                          class="px-3 py-3.5 text-sm font-medium text-heading"
+                        >
+                          Hendra K.
+                        </td>
+                        <td
+                          class="px-3 py-3.5 text-sm font-semibold text-heading tabular-nums"
+                        >
+                          $6,900
+                        </td>
+                        <td class="px-3 py-3.5 text-sm text-muted">
+                          Jun 24, 2025
+                        </td>
+                        <td class="px-5 py-3.5">
+                          <span
+                            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-info/10 text-info text-[11px] font-semibold"
+                          >
+                            <span
+                              class="w-1.5 h-1.5 rounded-full bg-info"
+                            ></span
+                            >Processing
+                          </span>
+                        </td>
+                      </tr>
+                      <tr
+                        class="hover:bg-subtle/50 transition-colors duration-150"
+                      >
+                        <td class="px-5 py-3.5 text-sm font-mono text-muted">
+                          #ORD-4816
+                        </td>
+                        <td
+                          class="px-3 py-3.5 text-sm font-medium text-heading"
+                        >
+                          Maulana P.
+                        </td>
+                        <td
+                          class="px-3 py-3.5 text-sm font-semibold text-heading tabular-nums"
+                        >
+                          $2,150
+                        </td>
+                        <td class="px-3 py-3.5 text-sm text-muted">
+                          Jun 23, 2025
+                        </td>
+                        <td class="px-5 py-3.5">
+                          <span
+                            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-positive/10 text-positive text-[11px] font-semibold"
+                          >
+                            <span
+                              class="w-1.5 h-1.5 rounded-full bg-positive"
+                            ></span
+                            >Delivered
+                          </span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /tab-order -->
+
+          <!-- ── Report tab ─────────────────────────────────────────── -->
+          <div id="tab-report" class="hidden space-y-5">
+            <!-- Summary KPIs -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
+              <div class="card p-5 flex flex-col gap-3">
+                <div class="flex items-center gap-2">
+                  <span
+                    class="w-8 h-8 rounded-lg bg-info/10 flex items-center justify-center shrink-0"
+                  >
+                    <i class="ph ph-chart-bar text-base text-info"></i>
+                  </span>
+                  <p class="text-sm font-medium text-muted">YTD Revenue</p>
+                </div>
+                <span
+                  class="text-2xl lg:text-3xl leading-none font-bold text-heading tabular-nums"
+                  >$1.24M</span
+                >
+                <span
+                  class="inline-flex items-center gap-1 text-xs font-semibold text-positive"
+                >
+                  <i class="ph-fill ph-arrow-up text-[10px]"></i>19.8% YoY
+                  growth
+                </span>
+              </div>
+              <div class="card p-5 flex flex-col gap-3">
+                <div class="flex items-center gap-2">
+                  <span
+                    class="w-8 h-8 rounded-lg bg-positive/10 flex items-center justify-center shrink-0"
+                  >
+                    <i class="ph ph-medal text-base text-positive"></i>
+                  </span>
+                  <p class="text-sm font-medium text-muted">Net Profit</p>
+                </div>
+                <span
+                  class="text-2xl lg:text-3xl leading-none font-bold text-heading tabular-nums"
+                  >$386K</span
+                >
+                <span
+                  class="inline-flex items-center gap-1 text-xs font-semibold text-positive"
+                >
+                  <i class="ph-fill ph-arrow-up text-[10px]"></i>31.2% profit
+                  margin
+                </span>
+              </div>
+              <div class="card p-5 flex flex-col gap-3">
+                <div class="flex items-center gap-2">
+                  <span
+                    class="w-8 h-8 rounded-lg bg-warn/10 flex items-center justify-center shrink-0"
+                  >
+                    <i class="ph ph-wallet text-base text-warn"></i>
+                  </span>
+                  <p class="text-sm font-medium text-muted">Total Expenses</p>
+                </div>
+                <span
+                  class="text-2xl lg:text-3xl leading-none font-bold text-heading tabular-nums"
+                  >$854K</span
+                >
+                <span
+                  class="inline-flex items-center gap-1 text-xs font-semibold text-negative"
+                >
+                  <i class="ph-fill ph-arrow-up text-[10px]"></i>7.4% vs last
+                  year
+                </span>
+              </div>
+            </div>
+
+            <!-- Quarterly breakdown + Category split -->
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-5">
+              <!-- Quarterly breakdown -->
+              <div class="card p-5 xl:col-span-2 flex flex-col gap-4">
+                <div class="flex items-center justify-between flex-wrap gap-2">
+                  <h2 class="text-base font-bold text-heading">
+                    Quarterly Breakdown
+                  </h2>
+                  <span class="text-xs text-muted">Fiscal Year 2025</span>
+                </div>
+                <div class="overflow-x-auto">
+                  <table class="w-full min-w-[480px] text-left">
+                    <thead>
+                      <tr class="border-b border-border">
+                        <th
+                          class="pb-3 text-xs font-semibold text-muted uppercase tracking-wide"
+                        >
+                          Quarter
+                        </th>
+                        <th
+                          class="pb-3 text-xs font-semibold text-muted uppercase tracking-wide text-right"
+                        >
+                          Revenue
+                        </th>
+                        <th
+                          class="pb-3 text-xs font-semibold text-muted uppercase tracking-wide text-right"
+                        >
+                          Expenses
+                        </th>
+                        <th
+                          class="pb-3 text-xs font-semibold text-muted uppercase tracking-wide text-right"
+                        >
+                          Profit
+                        </th>
+                        <th
+                          class="pb-3 text-xs font-semibold text-muted uppercase tracking-wide text-right"
+                        >
+                          Growth
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-border">
+                      <tr>
+                        <td class="py-3 text-sm font-semibold text-heading">
+                          Q1 2025
+                        </td>
+                        <td
+                          class="py-3 text-sm text-right font-semibold text-heading tabular-nums"
+                        >
+                          $284K
+                        </td>
+                        <td
+                          class="py-3 text-sm text-right text-text tabular-nums"
+                        >
+                          $198K
+                        </td>
+                        <td
+                          class="py-3 text-sm text-right font-semibold text-positive tabular-nums"
+                        >
+                          $86K
+                        </td>
+                        <td class="py-3 text-sm text-right">
+                          <span
+                            class="inline-flex items-center justify-end gap-1 text-positive font-semibold"
+                          >
+                            <i class="ph-fill ph-arrow-up text-[10px]"></i>12%
+                          </span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="py-3 text-sm font-semibold text-heading">
+                          Q2 2025
+                        </td>
+                        <td
+                          class="py-3 text-sm text-right font-semibold text-heading tabular-nums"
+                        >
+                          $318K
+                        </td>
+                        <td
+                          class="py-3 text-sm text-right text-text tabular-nums"
+                        >
+                          $214K
+                        </td>
+                        <td
+                          class="py-3 text-sm text-right font-semibold text-positive tabular-nums"
+                        >
+                          $104K
+                        </td>
+                        <td class="py-3 text-sm text-right">
+                          <span
+                            class="inline-flex items-center justify-end gap-1 text-positive font-semibold"
+                          >
+                            <i class="ph-fill ph-arrow-up text-[10px]"></i>21%
+                          </span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="py-3 text-sm font-semibold text-muted">
+                          Q3 2025
+                        </td>
+                        <td
+                          class="py-3 text-sm text-right font-semibold text-muted tabular-nums"
+                        >
+                          —
+                        </td>
+                        <td
+                          class="py-3 text-sm text-right text-muted tabular-nums"
+                        >
+                          —
+                        </td>
+                        <td
+                          class="py-3 text-sm text-right font-semibold text-muted tabular-nums"
+                        >
+                          —
+                        </td>
+                        <td class="py-3 text-sm text-right text-muted">
+                          Forecast
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="py-3 text-sm font-semibold text-muted">
+                          Q4 2025
+                        </td>
+                        <td
+                          class="py-3 text-sm text-right font-semibold text-muted tabular-nums"
+                        >
+                          —
+                        </td>
+                        <td
+                          class="py-3 text-sm text-right text-muted tabular-nums"
+                        >
+                          —
+                        </td>
+                        <td
+                          class="py-3 text-sm text-right font-semibold text-muted tabular-nums"
+                        >
+                          —
+                        </td>
+                        <td class="py-3 text-sm text-right text-muted">
+                          Forecast
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- YTD progress bars -->
+                <div class="pt-3 border-t border-border space-y-2.5">
+                  <div>
+                    <div class="flex justify-between mb-1">
+                      <span class="text-xs text-muted"
+                        >Revenue vs Target ($1.4M)</span
+                      ><span class="text-xs font-semibold text-heading"
+                        >89%</span
+                      >
+                    </div>
+                    <div class="h-2 rounded-full bg-subtle overflow-hidden">
+                      <div
+                        class="h-full rounded-full bg-info"
+                        style="width: 89%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between mb-1">
+                      <span class="text-xs text-muted"
+                        >Expenses vs Budget ($900K)</span
+                      ><span class="text-xs font-semibold text-heading"
+                        >95%</span
+                      >
+                    </div>
+                    <div class="h-2 rounded-full bg-subtle overflow-hidden">
+                      <div
+                        class="h-full rounded-full bg-warn"
+                        style="width: 95%"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Category split -->
+              <div class="card p-5 flex flex-col gap-4">
+                <h2 class="text-base font-bold text-heading">
+                  Revenue by Category
+                </h2>
+                <div class="space-y-3">
+                  <div>
+                    <div class="flex justify-between mb-1.5">
+                      <span class="text-sm text-text">Software</span>
+                      <span class="text-sm font-semibold text-heading"
+                        >$496K
+                        <span class="text-xs font-medium text-muted"
+                          >40%</span
+                        ></span
+                      >
+                    </div>
+                    <div class="h-2 rounded-full bg-subtle overflow-hidden">
+                      <div
+                        class="h-full rounded-full"
+                        style="width: 40%; background: var(--color-series-blue)"
+                      ></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between mb-1.5">
+                      <span class="text-sm text-text">Services</span>
+                      <span class="text-sm font-semibold text-heading"
+                        >$347K
+                        <span class="text-xs font-medium text-muted"
+                          >28%</span
+                        ></span
+                      >
+                    </div>
+                    <div class="h-2 rounded-full bg-subtle overflow-hidden">
+                      <div
+                        class="h-full rounded-full"
+                        style="
+                          width: 28%;
+                          background: var(--color-series-purple);
+                        "
+                      ></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between mb-1.5">
+                      <span class="text-sm text-text">Hardware</span>
+                      <span class="text-sm font-semibold text-heading"
+                        >$248K
+                        <span class="text-xs font-medium text-muted"
+                          >20%</span
+                        ></span
+                      >
+                    </div>
+                    <div class="h-2 rounded-full bg-subtle overflow-hidden">
+                      <div
+                        class="h-full rounded-full"
+                        style="
+                          width: 20%;
+                          background: var(--color-series-orange);
+                        "
+                      ></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between mb-1.5">
+                      <span class="text-sm text-text">Consulting</span>
+                      <span class="text-sm font-semibold text-heading"
+                        >$149K
+                        <span class="text-xs font-medium text-muted"
+                          >12%</span
+                        ></span
+                      >
+                    </div>
+                    <div class="h-2 rounded-full bg-subtle overflow-hidden">
+                      <div
+                        class="h-full rounded-full"
+                        style="
+                          width: 12%;
+                          background: var(--color-series-green);
+                        "
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-auto pt-4 border-t border-border">
+                  <p
+                    class="text-xs font-semibold text-muted uppercase tracking-wide mb-2"
+                  >
+                    Key Insights
+                  </p>
+                  <ul class="space-y-1.5 text-sm text-text">
+                    <li class="flex items-start gap-2">
+                      <i
+                        class="ph ph-arrow-up-right text-positive mt-0.5 shrink-0"
+                      ></i
+                      >Software led growth at 24% YoY
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <i
+                        class="ph ph-arrow-down-right text-negative mt-0.5 shrink-0"
+                      ></i
+                      >Hardware margins compressed 2pt
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <i
+                        class="ph ph-arrow-up-right text-positive mt-0.5 shrink-0"
+                      ></i
+                      >Services pipeline +18% ahead
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Download reports -->
+            <div class="card p-5">
+              <div
+                class="flex items-center justify-between flex-wrap gap-3 mb-4"
+              >
+                <h2 class="text-base font-bold text-heading">
+                  Available Reports
+                </h2>
+                <button
+                  class="inline-flex items-center gap-2 h-9 px-4 rounded-xl bg-heading text-card text-sm font-semibold hover:opacity-90 transition-opacity"
+                >
+                  <i class="ph ph-download-simple text-base"></i> Download all
+                </button>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                <div
+                  class="flex items-center gap-3 p-4 rounded-xl border border-border bg-subtle/50 hover:bg-subtle transition-colors duration-200 cursor-pointer"
+                >
+                  <span
+                    class="w-10 h-10 rounded-xl bg-info/10 flex items-center justify-center shrink-0"
+                  >
+                    <i class="ph ph-file-pdf text-xl text-info"></i>
+                  </span>
+                  <div class="min-w-0">
+                    <p class="text-sm font-semibold text-heading truncate">
+                      Annual Report 2024
+                    </p>
+                    <p class="text-xs text-muted">PDF · 4.2 MB</p>
+                  </div>
+                  <i
+                    class="ph ph-download-simple text-muted ml-auto shrink-0"
+                  ></i>
+                </div>
+                <div
+                  class="flex items-center gap-3 p-4 rounded-xl border border-border bg-subtle/50 hover:bg-subtle transition-colors duration-200 cursor-pointer"
+                >
+                  <span
+                    class="w-10 h-10 rounded-xl bg-positive/10 flex items-center justify-center shrink-0"
+                  >
+                    <i class="ph ph-file-xls text-xl text-positive"></i>
+                  </span>
+                  <div class="min-w-0">
+                    <p class="text-sm font-semibold text-heading truncate">
+                      Q2 2025 Summary
+                    </p>
+                    <p class="text-xs text-muted">XLSX · 1.8 MB</p>
+                  </div>
+                  <i
+                    class="ph ph-download-simple text-muted ml-auto shrink-0"
+                  ></i>
+                </div>
+                <div
+                  class="flex items-center gap-3 p-4 rounded-xl border border-border bg-subtle/50 hover:bg-subtle transition-colors duration-200 cursor-pointer"
+                >
+                  <span
+                    class="w-10 h-10 rounded-xl bg-warn/10 flex items-center justify-center shrink-0"
+                  >
+                    <i class="ph ph-file-csv text-xl text-warn"></i>
+                  </span>
+                  <div class="min-w-0">
+                    <p class="text-sm font-semibold text-heading truncate">
+                      Expense Ledger
+                    </p>
+                    <p class="text-xs text-muted">CSV · 890 KB</p>
+                  </div>
+                  <i
+                    class="ph ph-download-simple text-muted ml-auto shrink-0"
+                  ></i>
+                </div>
+                <div
+                  class="flex items-center gap-3 p-4 rounded-xl border border-border bg-subtle/50 hover:bg-subtle transition-colors duration-200 cursor-pointer"
+                >
+                  <span
+                    class="w-10 h-10 rounded-xl bg-info/10 flex items-center justify-center shrink-0"
+                  >
+                    <i class="ph ph-file-pdf text-xl text-info"></i>
+                  </span>
+                  <div class="min-w-0">
+                    <p class="text-sm font-semibold text-heading truncate">
+                      Sales Report H1
+                    </p>
+                    <p class="text-xs text-muted">PDF · 2.6 MB</p>
+                  </div>
+                  <i
+                    class="ph ph-download-simple text-muted ml-auto shrink-0"
+                  ></i>
+                </div>
+                <div
+                  class="flex items-center gap-3 p-4 rounded-xl border border-border bg-subtle/50 hover:bg-subtle transition-colors duration-200 cursor-pointer"
+                >
+                  <span
+                    class="w-10 h-10 rounded-xl bg-positive/10 flex items-center justify-center shrink-0"
+                  >
+                    <i class="ph ph-file-xls text-xl text-positive"></i>
+                  </span>
+                  <div class="min-w-0">
+                    <p class="text-sm font-semibold text-heading truncate">
+                      Product Performance
+                    </p>
+                    <p class="text-xs text-muted">XLSX · 3.1 MB</p>
+                  </div>
+                  <i
+                    class="ph ph-download-simple text-muted ml-auto shrink-0"
+                  ></i>
+                </div>
+                <div
+                  class="flex items-center gap-3 p-4 rounded-xl border border-border bg-subtle/50 hover:bg-subtle transition-colors duration-200 cursor-pointer"
+                >
+                  <span
+                    class="w-10 h-10 rounded-xl bg-[color-mix(in_srgb,var(--color-series-purple)_12%,transparent)] flex items-center justify-center shrink-0"
+                  >
+                    <i
+                      class="ph ph-chart-line text-xl"
+                      style="color: var(--color-series-purple)"
+                    ></i>
+                  </span>
+                  <div class="min-w-0">
+                    <p class="text-sm font-semibold text-heading truncate">
+                      Forecast Model
+                    </p>
+                    <p class="text-xs text-muted">PDF · 1.4 MB</p>
+                  </div>
+                  <i
+                    class="ph ph-download-simple text-muted ml-auto shrink-0"
+                  ></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /tab-report -->
+        </div>
+      </main>
+
+      <nav
+  id="mobile-bottom-nav"
+  class="fixed bottom-0 left-0 right-0 z-20 bg-card border-t border-border lg:hidden"
+  aria-label="Mobile navigation"
+>
+  <div class="flex items-center justify-around h-16 px-2">
+    <a class='nav-item flex flex-col items-center gap-1 px-3 py-1.5 text-muted hover:text-heading transition-colors duration-200' data-nav='dashboard' href='index.html'>
+      <i class="ph ph-squares-four text-xl"></i>
+      <span class="text-[10px] font-medium">Dashboard</span>
+    </a>
+    <a class='nav-item flex flex-col items-center gap-1 px-3 py-1.5 text-muted hover:text-heading transition-colors duration-200' data-nav='contacts' href='contacts.html'>
+      <i class="ph ph-address-book text-xl"></i>
+      <span class="text-[10px] font-medium">Contacts</span>
+    </a>
+    <a class='nav-item flex flex-col items-center gap-1 px-3 py-1.5 text-muted hover:text-heading transition-colors duration-200' data-nav='deals' href='deals.html'>
+      <i class="ph ph-handshake text-xl"></i>
+      <span class="text-[10px] font-medium">Deals</span>
+    </a>
+    <a class='nav-item flex flex-col items-center gap-1 px-3 py-1.5 text-muted hover:text-heading transition-colors duration-200' data-nav='tasks' href='tasks.html'>
+      <i class="ph ph-check-square text-xl"></i>
+      <span class="text-[10px] font-medium">Tasks</span>
+    </a>
+    <button
+      id="mobile-more-btn"
+      class="flex flex-col items-center gap-1 px-3 py-1.5 text-muted hover:text-heading transition-colors duration-200"
+      aria-label="More options"
+    >
+      <i class="ph ph-list text-xl"></i>
+      <span class="text-[10px] font-medium">Menu</span>
+    </button>
+  </div>
+</nav>
+
+    </div>
+
+    <!-- ================================================================
+       SEARCH MODAL (⌘F)
+       ================================================================ -->
+    <div
+      id="search-modal"
+      class="fixed inset-0 z-[60] hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Search"
+    >
+      <div
+        class="absolute inset-0 bg-black/40 backdrop-blur-sm"
+        data-close-search
+      ></div>
+      <div
+        class="relative mx-auto mt-20 sm:w-[92%] sm:max-w-[560px] card !rounded-2xl shadow-2xl overflow-hidden pop-enter"
+      >
+        <!-- Search input -->
+        <div class="flex items-center gap-3 px-4 h-14 border-b border-border">
+          <i class="ph ph-magnifying-glass text-lg text-muted"></i>
+          <input
+            id="search-modal-input"
+            type="text"
+            placeholder="Search something"
+            class="flex-1 bg-transparent text-[15px] text-heading placeholder:text-muted focus:outline-none"
+            autocomplete="off"
+          />
+        </div>
+        <!-- Filter chips -->
+        <div
+          class="flex items-center gap-2 px-4 py-3 overflow-x-auto scrollbar-hide border-b border-border"
+        >
+          <button
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-subtle text-xs font-semibold text-heading whitespace-nowrap"
+          >
+            <i class="ph ph-squares-four"></i> All
+          </button>
+          <button
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-muted hover:bg-subtle transition-colors whitespace-nowrap"
+          >
+            <i class="ph ph-handshake"></i> Deal
+          </button>
+          <button
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-muted hover:bg-subtle transition-colors whitespace-nowrap"
+          >
+            <i class="ph ph-check-square"></i> Task
+          </button>
+          <button
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-muted hover:bg-subtle transition-colors whitespace-nowrap"
+          >
+            <i class="ph ph-address-book"></i> Contact
+          </button>
+          <button
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-muted hover:bg-subtle transition-colors whitespace-nowrap"
+          >
+            <i class="ph ph-buildings"></i> Company
+          </button>
+          <button
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-muted hover:bg-subtle transition-colors whitespace-nowrap"
+          >
+            <i class="ph ph-package"></i> Product
+          </button>
+        </div>
+        <!-- Results -->
+        <div class="max-h-[320px] overflow-y-auto p-2">
+          <p
+            class="px-3 py-2 text-[11px] font-semibold uppercase tracking-wide text-muted/70"
+          >
+            Recent
+          </p>
+          <button
+            class="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl hover:bg-subtle transition-colors duration-200 text-left"
+          >
+            <span
+              class="w-9 h-9 rounded-lg bg-subtle flex items-center justify-center text-muted shrink-0"
+              ><i class="ph ph-handshake text-base"></i
+            ></span>
+            <span class="flex-1 min-w-0">
+              <span class="block text-sm font-medium text-heading truncate"
+                >Online Learning Platform Enhancement</span
+              >
+              <span class="block text-[11px] text-muted truncate"
+                >Id : #122330FF · Deals</span
+              >
+            </span>
+            <span
+              class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold"
+              style="
+                color: var(--color-series-purple);
+                background: color-mix(
+                  in srgb,
+                  var(--color-series-purple) 12%,
+                  transparent
+                );
+              "
+              ><span
+                class="w-1.5 h-1.5 rounded-full"
+                style="background: var(--color-series-purple)"
+              ></span
+              >Qualified</span
+            >
+          </button>
+          <button
+            class="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl hover:bg-subtle transition-colors duration-200 text-left"
+          >
+            <span
+              class="w-9 h-9 rounded-lg bg-subtle flex items-center justify-center text-muted shrink-0"
+              ><i class="ph ph-check-square text-base"></i
+            ></span>
+            <span class="flex-1 min-w-0">
+              <span class="block text-sm font-medium text-heading truncate"
+                >ERP system implementation training</span
+              >
+              <span class="block text-[11px] text-muted truncate"
+                >Customer support · Tasks</span
+              >
+            </span>
+            <span
+              class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-warn/10 text-warn text-[11px] font-semibold"
+              ><span class="w-1.5 h-1.5 rounded-full bg-warn"></span
+              >Waiting</span
+            >
+          </button>
+          <button
+            class="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl hover:bg-subtle transition-colors duration-200 text-left"
+          >
+            <span
+              class="w-9 h-9 rounded-lg bg-subtle flex items-center justify-center text-muted shrink-0"
+              ><i class="ph ph-handshake text-base"></i
+            ></span>
+            <span class="flex-1 min-w-0">
+              <span class="block text-sm font-medium text-heading truncate"
+                >Digital Banking System Security</span
+              >
+              <span class="block text-[11px] text-muted truncate"
+                >Id : #122330FF · Deals</span
+              >
+            </span>
+            <span
+              class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-info/10 text-info text-[11px] font-semibold"
+              ><span class="w-1.5 h-1.5 rounded-full bg-info"></span
+              >Payment</span
+            >
+          </button>
+          <p
+            class="px-3 py-2 mt-1 text-[11px] font-semibold uppercase tracking-wide text-muted/70"
+          >
+            Frequent contact
+          </p>
+          <button
+            class="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl hover:bg-subtle transition-colors duration-200 text-left"
+          >
+            <img
+              src="assets/images/user4.png"
+              alt=""
+              class="w-9 h-9 rounded-full object-cover shrink-0"
+            />
+            <span class="flex-1 min-w-0">
+              <span class="block text-sm font-medium text-heading truncate"
+                >Adinda Ayu Lestari</span
+              >
+              <span class="block text-[11px] text-muted truncate"
+                >ardian@gmail.com</span
+              >
+            </span>
+            <span
+              class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-positive/10 text-positive text-[11px] font-semibold"
+              ><span class="w-1.5 h-1.5 rounded-full bg-positive"></span
+              >Customer</span
+            >
+          </button>
+          <button
+            class="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl hover:bg-subtle transition-colors duration-200 text-left"
+          >
+            <img
+              src="assets/images/user6.png"
+              alt=""
+              class="w-9 h-9 rounded-full object-cover shrink-0"
+            />
+            <span class="flex-1 min-w-0">
+              <span class="block text-sm font-medium text-heading truncate"
+                >Dwi Wahyu Anggara</span
+              >
+              <span class="block text-[11px] text-muted truncate"
+                >dwiwahyu@gmail.com</span
+              >
+            </span>
+            <span
+              class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold"
+              style="
+                color: var(--color-series-orange);
+                background: color-mix(
+                  in srgb,
+                  var(--color-series-orange) 12%,
+                  transparent
+                );
+              "
+              ><span
+                class="w-1.5 h-1.5 rounded-full"
+                style="background: var(--color-series-orange)"
+              ></span
+              >Competitor</span
+            >
+          </button>
+        </div>
+        <!-- Footer -->
+        <div
+          class="flex items-center gap-4 px-4 py-3 border-t border-border text-[11px] text-muted"
+        >
+          <span class="inline-flex items-center gap-1"
+            ><kbd class="bg-subtle border border-border rounded px-1.5 py-0.5"
+              >↑</kbd
+            ><kbd class="bg-subtle border border-border rounded px-1.5 py-0.5"
+              >↓</kbd
+            >
+            Move</span
+          >
+          <span class="inline-flex items-center gap-1"
+            ><kbd class="bg-subtle border border-border rounded px-1.5 py-0.5"
+              >↵</kbd
+            >
+            Select</span
+          >
+          <span class="inline-flex items-center gap-1"
+            ><kbd class="bg-subtle border border-border rounded px-1.5 py-0.5"
+              >Esc</kbd
+            >
+            Quit</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================
+       EXPORT MODAL
+       ================================================================ -->
+    <div
+      id="export-modal"
+      class="fixed inset-0 z-[60] hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Export reports"
+    >
+      <div
+        class="absolute inset-0 bg-black/40 backdrop-blur-sm"
+        data-close-export
+      ></div>
+      <div
+        class="relative mx-auto mt-24 w-[92%] max-w-[440px] card !rounded-2xl shadow-2xl overflow-hidden pop-enter"
+      >
+        <div
+          class="flex items-start justify-between gap-3 px-5 py-4 border-b border-border"
+        >
+          <div class="flex items-center gap-3">
+            <span
+              class="w-9 h-9 rounded-xl bg-subtle flex items-center justify-center text-accent shrink-0"
+              ><i class="ph-fill ph-file-arrow-down text-lg"></i
+            ></span>
+            <div>
+              <h3 class="text-[15px] font-bold text-heading">
+                Export all reports
+              </h3>
+              <p class="text-xs text-muted">Total export · 4 files</p>
+            </div>
+          </div>
+          <button
+            data-close-export
+            class="text-sm font-semibold text-muted hover:text-heading transition-colors"
+          >
+            Cancel
+          </button>
+        </div>
+        <div
+          id="export-file-list"
+          class="p-3 space-y-1.5 max-h-[360px] overflow-y-auto"
+        >
+          <div
+            data-export-file
+            data-name="Total sales report"
+            data-size="5.21 MB"
+            data-state="done"
+          ></div>
+          <div
+            data-export-file
+            data-name="Operating expenses"
+            data-size="4.02 MB"
+            data-state="done"
+          ></div>
+          <div
+            data-export-file
+            data-name="Gross profit"
+            data-size="6.18 MB"
+            data-state="65"
+          ></div>
+          <div
+            data-export-file
+            data-name="Revenue forecast"
+            data-size="15.22 MB"
+            data-state="40"
+          ></div>
+          <div
+            data-export-file
+            data-name="Source"
+            data-size="3.06 MB"
+            data-state="33"
+          ></div>
+          <div
+            data-export-file
+            data-name="Table data sales"
+            data-size="5.33 MB"
+            data-state="10"
+          ></div>
+        </div>
+      </div>
+    </div>
+  <script defer src="index.js"></script></body>
+
+
+</html>

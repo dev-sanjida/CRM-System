@@ -1,0 +1,44 @@
+/* Clientra – OTP Verification page-specific styles. */
+.otp-input {
+  width: 100%;
+  max-width: 52px;
+  aspect-ratio: 1 / 1.1;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+  color: var(--color-heading);
+  font-size: clamp(16px, 5vw, 22px);
+  font-weight: 700;
+  text-align: center;
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+  outline: none;
+  caret-color: var(--color-accent);
+}
+.otp-input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 14%, transparent);
+}
+.otp-input.filled {
+  border-color: var(--color-accent);
+}
+.otp-input.error {
+  border-color: var(--color-negative);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-negative) 12%, transparent);
+  animation: shake 0.35s ease;
+}
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20%,
+  60% {
+    transform: translateX(-5px);
+  }
+  40%,
+  80% {
+    transform: translateX(5px);
+  }
+}

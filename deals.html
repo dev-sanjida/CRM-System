@@ -1,0 +1,1117 @@
+<!doctype html>
+<html lang="en" class="light">
+  
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+    <meta charset="UTF-8" />
+
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("Clientra-theme");
+        if (!t) {
+          t = window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+        document.documentElement.classList.remove("light", "dark");
+        document.documentElement.classList.add(t);
+      })();
+    </script>
+    <meta
+      name="description"
+      content="Clientra – Deals. Manage your CRM deals in list or kanban view."
+    />
+    <meta name="author" content="Clientra" />
+    <title>Clientra – Deals</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+  <link href="assets/css/index.css" rel="stylesheet"></head>
+  <body class="bg-app-bg text-text font-['Inter']" data-page="deals">
+    <div id="app" class="relative min-h-dvh">
+      <!-- ==================================================================
+     SIDEBAR – Desktop fixed / Mobile off-canvas drawer
+     ================================================================== -->
+<aside
+  id="sidebar"
+  class="sidebar-drawer fixed top-0 left-0 z-40 h-full w-[248px] bg-card border-r border-border flex flex-col panel-transition lg:translate-x-0"
+  role="navigation"
+  aria-label="Main navigation"
+>
+  <!-- ── Brand ────────────────────────────────────────────────────── -->
+  <div
+    class="brand-row flex items-center justify-between h-[68px] px-5 shrink-0"
+  >
+    <a aria-label='Clientra Home' class='flex items-center min-w-0' href='index.html'>
+      <img
+        src="assets/images/logo.png"
+        alt="Clientra"
+        width="104"
+        height="26"
+        class="h-[26px] w-[104px] object-contain object-left"
+      />
+    </a>
+    <button
+      id="sidebar-collapse-btn"
+      class="sidebar-collapse-control hidden lg:flex items-center justify-center w-8 h-8 rounded-lg text-muted hover:text-heading hover:bg-subtle transition-colors duration-200 shrink-0"
+      aria-label="Toggle sidebar"
+    >
+      <i class="ph ph-sidebar-simple text-lg"></i>
+    </button>
+  </div>
+
+  <!-- ── Search ──────────────────────────────────────────────────── -->
+  <div class="px-4 pb-3 shrink-0">
+    <button
+      id="sidebar-search-trigger"
+      class="flex items-center w-full h-10 gap-2.5 px-3 rounded-xl bg-subtle border border-border text-muted hover:border-border-strong transition-colors duration-200"
+      aria-label="Search"
+    >
+      <i class="ph ph-magnifying-glass text-base shrink-0"></i>
+      <span class="sidebar-label text-sm flex-1 text-left">Search</span>
+      <kbd
+        class="sidebar-label text-[11px] font-medium text-muted/80 bg-card border border-border rounded px-1.5 py-0.5"
+        >⌘ F</kbd
+      >
+    </button>
+  </div>
+
+  <!-- ── Navigation ───────────────────────────────────────────────── -->
+  <nav
+    class="flex-1 overflow-y-auto overflow-x-hidden px-3 pb-4"
+    id="sidebar-nav"
+  >
+    <!-- MAIN MENU -->
+    <p
+      class="sidebar-label px-3 mt-2 mb-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+    >
+      Main Menu
+    </p>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='dashboard' data-tip='Dashboard' href='index.html'>
+      <i class="ph ph-squares-four text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Dashboard</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='contacts' data-tip='Contacts' href='contacts.html'>
+      <i class="ph ph-address-book text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Contacts</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='companies' data-tip='Companies' href='companies.html'>
+      <i class="ph ph-buildings text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Companies</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='deals' data-tip='Deals' href='deals.html'>
+      <i class="ph ph-handshake text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Deals</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='tasks' data-tip='Tasks' href='tasks.html'>
+      <i class="ph ph-check-square text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Tasks</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='reports' data-tip='Reports' href='reports.html'>
+      <i class="ph ph-chart-line text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Reports</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='calendar' data-tip='Calendar' href='calendar.html'>
+      <i class="ph ph-calendar-blank text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Calendar</span>
+    </a>
+
+    <!-- MARKETING -->
+    <p
+      class="sidebar-label px-3 mt-5 mb-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+    >
+      Marketing
+    </p>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='products' data-tip='Products' href='products.html'>
+      <i class="ph ph-package text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Products</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='emails' data-tip='Emails' href='emails.html'>
+      <i class="ph ph-envelope-simple text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Emails</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='invoices' data-tip='Invoices' href='invoices.html'>
+      <i class="ph ph-receipt text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Invoices</span>
+    </a>
+
+    <!-- PREFERENCES -->
+    <p
+      class="sidebar-label px-3 mt-5 mb-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+    >
+      Preferences
+    </p>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='integrations' data-tip='Integrations' href='integrations.html'>
+      <i class="ph ph-plugs-connected text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Integrations</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='profile' data-tip='Profile' href='profile.html'>
+      <i class="ph ph-user-circle text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Profile</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='settings' data-tip='Settings' href='settings.html'>
+      <i class="ph ph-gear-six text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Settings</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='notifications' data-tip='Notifications' href='notifications.html'>
+      <i class="ph ph-bell text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Notifications</span>
+    </a>
+
+    <!-- DETAIL PAGES -->
+    <p
+      class="sidebar-label px-3 mt-5 mb-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+    >
+      Detail Pages
+    </p>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='company-detail' data-tip='Company detail' href='company-detail.html'>
+      <i class="ph ph-building-office text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Company detail</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='deal-detail' data-tip='Deal detail' href='deal-detail.html'>
+      <i class="ph ph-handshake text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Deal detail</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='product-detail' data-tip='Product detail' href='product-detail.html'>
+      <i class="ph ph-package text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Product detail</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='edit-contact' data-tip='Edit contact' href='edit-contact.html'>
+      <i class="ph ph-pencil-simple text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Edit contact</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='explore-integrations' data-tip='Explore integrations' href='explore-integrations.html'>
+      <i class="ph ph-compass text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Explore integrations</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='import-csv' data-tip='Import CSV' href='import-csv.html'>
+      <i class="ph ph-file-csv text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Import CSV</span>
+    </a>
+
+    <!-- CREATE FORMS -->
+    <p
+      class="sidebar-label px-3 mt-5 mb-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+    >
+      Create
+    </p>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='add-contact' data-tip='Add contact' href='add-contact.html'>
+      <i class="ph ph-user-plus text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Add contact</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='add-company' data-tip='Add company' href='add-company.html'>
+      <i class="ph ph-buildings text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Add company</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='add-deal' data-tip='Add deal' href='add-deal.html'>
+      <i class="ph ph-plus-circle text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Add deal</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='add-product' data-tip='Add product' href='add-product.html'>
+      <i class="ph ph-package text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Add product</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='add-task' data-tip='Add task' href='add-task.html'>
+      <i class="ph ph-check-square text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Add task</span>
+    </a>
+
+    <!-- AUTH -->
+    <p
+      class="sidebar-label px-3 mt-5 mb-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+    >
+      Auth
+    </p>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='sign-in' data-tip='Sign in' href='sign-in.html'>
+      <i class="ph ph-sign-in text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Sign in</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='sign-up' data-tip='Sign up' href='sign-up.html'>
+      <i class="ph ph-user-plus text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Sign up</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='forgot-password' data-tip='Forgot password' href='forgot-password.html'>
+      <i class="ph ph-lock-key text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">Forgot password</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='otp-verification' data-tip='OTP verification' href='otp-verification.html'>
+      <i class="ph ph-shield-check text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">OTP verification</span>
+    </a>
+    <a class='nav-item group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-text hover:bg-subtle hover:text-heading transition-colors duration-200' data-nav='new-password' data-tip='New password' href='new-password.html'>
+      <i class="ph ph-key text-lg shrink-0"></i>
+      <span class="sidebar-label flex-1 truncate">New password</span>
+    </a>
+  </nav>
+
+  <!-- ── Trial / Upgrade card ─────────────────────────────────────── -->
+  <div id="trial-card" class="sidebar-label px-3 shrink-0">
+    <div class="relative rounded-2xl bg-subtle border border-border p-4">
+      <button
+        id="trial-card-dismiss"
+        class="absolute top-3 right-3 w-6 h-6 rounded-md flex items-center justify-center text-muted hover:text-heading hover:bg-card transition-colors duration-200"
+        aria-label="Dismiss"
+      >
+        <i class="ph ph-x text-sm"></i>
+      </button>
+      <span
+        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-heading text-card text-xs font-semibold"
+      >
+        <i class="ph-fill ph-lightning text-warn"></i>
+        20 days left
+      </span>
+      <p class="mt-3 text-[13px] leading-snug text-text">
+        Upgrade to premium and enjoy the benefits for a long time
+      </p>
+      <button
+        class="mt-3.5 w-full h-9 rounded-lg bg-card border border-border text-sm font-semibold text-heading hover:bg-app-bg transition-colors duration-200"
+      >
+        View plan
+      </button>
+    </div>
+  </div>
+
+  <!-- ── User panel ───────────────────────────────────────────────── -->
+  <div class="p-3 shrink-0 relative">
+    <button
+      id="account-switcher-btn"
+      class="flex items-center w-full gap-3 px-2.5 py-2 rounded-xl border border-border bg-card hover:bg-subtle transition-colors duration-200"
+      aria-expanded="false"
+    >
+      <img
+        src="assets/images/user1.png"
+        alt="Maulana Pratama"
+        class="w-9 h-9 rounded-full object-cover shrink-0"
+      />
+      <span class="sidebar-label flex-1 min-w-0 text-left">
+        <span class="block text-[13px] font-semibold text-heading truncate"
+          >Maulana Pratama</span
+        >
+        <span class="block text-[11px] text-muted truncate"
+          >maulana@gmail.com</span
+        >
+      </span>
+      <i
+        class="sidebar-label ph ph-caret-up-down text-base text-muted shrink-0"
+      ></i>
+    </button>
+
+    <!-- Account switcher popup (anchored above user panel) -->
+    <div
+      id="account-switcher"
+      class="absolute bottom-full left-0 right-0 mb-2 z-[55] hidden card !rounded-2xl shadow-2xl p-1.5"
+    >
+      <!-- Active account -->
+      <div class="flex items-center gap-3 px-2.5 py-2 rounded-xl bg-subtle">
+        <img
+          src="assets/images/user1.png"
+          alt=""
+          class="w-9 h-9 rounded-full object-cover shrink-0"
+        />
+        <div class="flex-1 min-w-0">
+          <p class="text-[13px] font-semibold text-heading truncate">
+            Maulana Pratama
+          </p>
+          <p class="text-[11px] text-muted truncate">maulana@gmail.com</p>
+        </div>
+        <i class="ph-bold ph-check-circle text-base text-accent shrink-0"></i>
+      </div>
+
+      <!-- Second account -->
+      <button
+        id="account-switch-galih"
+        class="flex items-center gap-3 w-full px-2.5 py-2 rounded-xl hover:bg-subtle transition-colors duration-200 mt-0.5 text-left"
+      >
+        <img
+          src="assets/images/user7.png"
+          alt=""
+          class="w-9 h-9 rounded-full object-cover shrink-0"
+        />
+        <div class="flex-1 min-w-0">
+          <p class="text-[13px] font-semibold text-heading truncate">
+            Galih Adi Saptaji
+          </p>
+          <p class="text-[11px] text-muted truncate">galih@gmail.com</p>
+        </div>
+      </button>
+
+      <div class="my-1.5 h-px bg-border mx-1"></div>
+
+      <!-- Add account → sign-up page -->
+      <a class='flex items-center gap-3 w-full px-2.5 py-2 rounded-xl hover:bg-subtle transition-colors duration-200 text-sm font-medium text-text' href='sign-up.html'>
+        <i class="ph ph-plus-circle text-lg text-muted shrink-0"></i> Add
+        account
+      </a>
+
+      <!-- Sign out -->
+      <button
+        id="sign-out-btn"
+        class="flex items-center gap-3 w-full px-2.5 py-2 rounded-xl hover:bg-negative/10 transition-colors duration-200 text-sm font-medium text-negative"
+      >
+        <i class="ph ph-sign-out text-lg shrink-0"></i> Sign Out
+      </button>
+    </div>
+  </div>
+</aside>
+
+<!-- ── Mobile sidebar overlay ─────────────────────────────────── -->
+<div
+  id="sidebar-overlay"
+  class="fixed inset-0 z-30 bg-black/40 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden"
+  aria-hidden="true"
+></div>
+
+
+      <header
+        id="topbar"
+        class="fixed top-0 right-0 left-0 lg:left-[248px] z-20 h-[68px] bg-app-bg/85 backdrop-blur-xl border-b border-border transition-all duration-300"
+      >
+        <div class="flex items-center justify-between h-full px-4 lg:px-6">
+          <div class="flex items-center gap-3">
+            <button
+              id="mobile-sidebar-toggle"
+              class="lg:hidden flex items-center justify-center w-10 h-10 rounded-xl border border-border bg-card text-muted hover:text-heading transition-colors duration-200"
+              aria-label="Open sidebar menu"
+            >
+              <i class="ph ph-list text-xl"></i>
+            </button>
+            <h1
+              class="hidden sm:block text-lg font-bold text-heading tracking-tight"
+            >
+              Deals
+            </h1>
+          </div>
+
+          <div class="flex items-center gap-2 sm:gap-3">
+ 
+
+  <!-- ── Notifications ─────────────────────────────────────── -->
+  <div class="relative" id="notifications-wrapper">
+    <button
+      id="notifications-btn"
+      class="relative flex items-center justify-center w-10 h-10 rounded-xl border border-border bg-card text-muted hover:bg-subtle hover:text-heading transition-colors duration-200"
+      aria-label="Notifications"
+      aria-expanded="false"
+      aria-haspopup="true"
+    >
+      <i class="ph ph-bell text-lg"></i>
+      <span
+        class="absolute top-1.5 right-2 w-2 h-2 rounded-full bg-negative ring-2 ring-card"
+      ></span>
+    </button>
+
+    <!-- Notifications dropdown -->
+    <div
+      id="notifications-dropdown"
+      class="absolute right-0 top-full mt-2.5 w-72 sm:w-80 card !rounded-2xl shadow-xl shadow-black/5 opacity-0 pointer-events-none scale-95 origin-top-right transition-all duration-200 z-50"
+      role="menu"
+    >
+      <div
+        class="px-4 py-3 border-b border-border flex items-center justify-between"
+      >
+        <h3 class="text-sm font-semibold text-heading">Notifications</h3>
+        <button class="text-xs text-accent font-medium hover:underline">
+          Mark all read
+        </button>
+      </div>
+      <div class="p-1.5 max-h-72 overflow-y-auto">
+        <div
+          class="flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-subtle transition-colors duration-200 cursor-pointer"
+        >
+          <img
+            src="assets/images/user2.png"
+            alt=""
+            class="w-8 h-8 rounded-full object-cover shrink-0"
+          />
+          <div class="flex-1 min-w-0">
+            <p class="text-[13px] text-heading">
+              <span class="font-semibold">Adinda Ayu</span> assigned you a new
+              deal
+            </p>
+            <p class="text-[11px] text-muted mt-0.5">2 min ago</p>
+          </div>
+        </div>
+        <div
+          class="flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-subtle transition-colors duration-200 cursor-pointer"
+        >
+          <img
+            src="assets/images/user3.png"
+            alt=""
+            class="w-8 h-8 rounded-full object-cover shrink-0"
+          />
+          <div class="flex-1 min-w-0">
+            <p class="text-[13px] text-heading">
+              <span class="font-semibold">Dwi Wahyu</span> commented on a task
+            </p>
+            <p class="text-[11px] text-muted mt-0.5">15 min ago</p>
+          </div>
+        </div>
+        <div
+          class="flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-subtle transition-colors duration-200 cursor-pointer"
+        >
+          <div
+            class="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center shrink-0"
+          >
+            <i class="ph-bold ph-check text-sm text-accent"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="text-[13px] text-heading">
+              Deal <span class="font-semibold">Cloud Migration</span> marked won
+            </p>
+            <p class="text-[11px] text-muted mt-0.5">1 hour ago</p>
+          </div>
+        </div>
+      </div>
+      <div class="px-4 py-2.5 border-t border-border">
+        <a class='block w-full text-center text-xs font-medium text-accent hover:underline' href='notifications.html'>
+          View all notifications
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Member / avatar stack ─────────────────────────────── -->
+  <div class="relative" id="members-wrapper">
+    <button
+      id="members-btn"
+      class="flex items-center h-10 pl-1 pr-1 rounded-full transition-colors duration-200"
+      aria-label="Team members"
+      aria-expanded="false"
+      aria-haspopup="true"
+    >
+      <span class="flex -space-x-2.5">
+        <img
+          src="assets/images/user1.png"
+          alt=""
+          class="w-8 h-8 rounded-full object-cover ring-2 ring-card"
+        />
+        <img
+          src="assets/images/user2.png"
+          alt=""
+          class="w-8 h-8 rounded-full object-cover ring-2 ring-card hidden sm:block"
+        />
+        <span class="flex items-center justify-center w-8 h-8 rounded-full bg-heading text-card hover:opacity-90 transition-opacity duration-200"
+          aria-label="Add new">
+          <i class="ph-bold ph-plus text-base"></i>
+        </span>
+      </span>
+    </button>
+
+    <!-- Members dropdown -->
+    <div
+      id="members-dropdown"
+      class="absolute right-0 top-full mt-2.5 w-64 card !rounded-2xl shadow-xl shadow-black/5 p-1.5 opacity-0 pointer-events-none scale-95 origin-top-right transition-all duration-200 z-50"
+      role="menu"
+    >
+      <div
+        class="flex items-center gap-3 px-2.5 py-2 rounded-xl hover:bg-subtle transition-colors duration-200 cursor-pointer"
+      >
+        <img
+          src="assets/images/user4.png"
+          alt=""
+          class="w-9 h-9 rounded-full object-cover"
+        />
+        <div class="flex-1 min-w-0">
+          <p class="text-[13px] font-semibold text-heading truncate">
+            Hendra Kurniawan
+          </p>
+          <p class="text-[11px] text-muted truncate">hendra@gmail.com</p>
+        </div>
+        <i class="ph ph-paper-plane-tilt text-base text-muted"></i>
+      </div>
+      <div
+        class="flex items-center gap-3 px-2.5 py-2 rounded-xl hover:bg-subtle transition-colors duration-200 cursor-pointer"
+      >
+        <span
+          class="w-9 h-9 rounded-full bg-subtle border border-border flex items-center justify-center text-[12px] font-semibold text-muted"
+          >MP</span
+        >
+        <div class="flex-1 min-w-0">
+          <p class="text-[13px] font-semibold text-heading truncate">
+            Maulana Putri
+          </p>
+          <p class="text-[11px] text-muted truncate">maulana@gmail.com</p>
+        </div>
+        <i class="ph ph-paper-plane-tilt text-base text-muted"></i>
+      </div>
+      <div
+        class="flex items-center gap-3 px-2.5 py-2 rounded-xl hover:bg-subtle transition-colors duration-200 cursor-pointer"
+      >
+        <img
+          src="assets/images/user5.png"
+          alt=""
+          class="w-9 h-9 rounded-full object-cover"
+        />
+        <div class="flex-1 min-w-0">
+          <p class="text-[13px] font-semibold text-heading truncate">
+            Dwi Ayu Lestari
+          </p>
+          <p class="text-[11px] text-muted truncate">dwiayu@gmail.com</p>
+        </div>
+        <i class="ph ph-paper-plane-tilt text-base text-muted"></i>
+      </div>
+      <button
+        class="mt-1 w-full h-10 rounded-xl bg-heading text-card text-sm font-semibold hover:opacity-90 transition-opacity duration-200 flex items-center justify-center gap-2"
+      >
+        <i class="ph-bold ph-plus text-sm"></i>
+        Add member
+      </button>
+    </div>
+  </div>
+
+  <!-- ── Add button ────────────────────────────────────────── -->
+  
+
+  <!-- ── Theme toggle ──────────────────────────────────────── -->
+  <button
+    id="theme-toggle"
+    class="flex items-center justify-center w-10 h-10 rounded-xl border border-border bg-card text-muted hover:bg-subtle hover:text-heading transition-colors duration-200"
+    aria-label="Toggle dark mode"
+  >
+    <i id="theme-toggle-icon" class="ph ph-moon text-lg"></i>
+  </button>
+</div>
+
+        </div>
+      </header>
+
+      <main
+        id="main-content"
+        class="pt-[68px] pb-14 lg:pb-0 min-h-dvh transition-all duration-300 lg:ml-[248px]"
+      >
+        <div class="p-4 lg:p-6 space-y-5">
+          <!-- ── Toolbar ──────────────────────────────────────────── -->
+          <!-- Row 1: search + primary CTA -->
+          <div class="flex items-center gap-2.5">
+            <button
+              data-search-open
+              class="relative flex-1 h-10 min-w-0 pl-9 pr-3 rounded-xl bg-card border border-border text-sm text-muted text-left hover:border-border-strong transition-colors duration-200"
+            >
+              <i
+                class="ph ph-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-muted text-base"
+              ></i>
+              Search deal
+            </button>
+            <a class='inline-flex items-center gap-2 h-10 px-4 rounded-xl bg-heading text-card text-sm font-semibold hover:opacity-90 transition-opacity duration-200 shrink-0' href='add-deal.html'>
+              <i class="ph-bold ph-plus text-sm"></i>
+              <span class="hidden sm:inline">Add deal</span>
+              <span class="sm:hidden">Add</span>
+            </a>
+          </div>
+
+          <!-- Row 2: filter controls + import -->
+          <div class="flex items-center gap-2 flex-wrap">
+            <div class="flex items-center gap-2 flex-wrap">
+              <!-- Sort by -->
+              <div class="relative" data-dropdown>
+                <button
+                  data-dropdown-trigger
+                  class="inline-flex items-center gap-2 h-9 px-3 rounded-xl border border-border bg-card text-sm font-medium text-text hover:bg-subtle transition-colors duration-200"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="ph ph-arrows-down-up text-base text-muted"></i>
+                  <span class="hidden sm:inline">Sort by</span>
+                  <i class="ph ph-caret-down text-xs text-muted"></i>
+                </button>
+                <div
+                  data-dropdown-menu
+                  class="absolute left-0 top-full mt-2 w-52 card !rounded-2xl shadow-xl shadow-black/5 p-1.5 opacity-0 pointer-events-none scale-95 origin-top-left transition-all duration-200 z-50"
+                  role="menu"
+                >
+                  <button
+                    data-sort
+                    class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                    role="menuitem"
+                  >
+                    <i class="ph ph-text-aa text-base text-muted"></i>
+                    <span>Name (A–Z)</span>
+                  </button>
+                  <button
+                    data-sort
+                    class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                    role="menuitem"
+                  >
+                    <i class="ph ph-clock text-base text-muted"></i>
+                    <span>Recently added</span>
+                  </button>
+                  <button
+                    data-sort
+                    class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                    role="menuitem"
+                  >
+                    <i class="ph ph-currency-dollar text-base text-muted"></i>
+                    <span>Price (high to low)</span>
+                  </button>
+                  <button
+                    data-sort
+                    class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                    role="menuitem"
+                  >
+                    <i class="ph ph-tag text-base text-muted"></i>
+                    <span>Stage</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Filter -->
+              <div class="relative" data-dropdown>
+                <button
+                  data-dropdown-trigger
+                  class="inline-flex items-center gap-2 h-9 px-3 rounded-xl border border-border bg-card text-sm font-medium text-text hover:bg-subtle transition-colors duration-200"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="ph ph-sliders-horizontal text-base text-muted"></i>
+                  <span class="hidden sm:inline">Filter</span>
+                </button>
+                <div
+                  data-dropdown-menu
+                  class="absolute left-0 top-full mt-2 w-52 card !rounded-2xl shadow-xl shadow-black/5 p-2 opacity-0 pointer-events-none scale-95 origin-top-left transition-all duration-200 z-50"
+                  role="menu"
+                >
+                  <p
+                    class="px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-muted/70"
+                  >
+                    Stage
+                  </p>
+                  <label
+                    class="flex items-center gap-2.5 px-2.5 py-2 rounded-lg hover:bg-subtle cursor-pointer transition-colors duration-200"
+                    ><input
+                      type="checkbox"
+                      class="w-4 h-4 rounded border-border-strong accent-[var(--color-accent)]"
+                      checked
+                    /><span class="text-sm text-text">New</span></label
+                  >
+                  <label
+                    class="flex items-center gap-2.5 px-2.5 py-2 rounded-lg hover:bg-subtle cursor-pointer transition-colors duration-200"
+                    ><input
+                      type="checkbox"
+                      class="w-4 h-4 rounded border-border-strong accent-[var(--color-accent)]"
+                      checked
+                    /><span class="text-sm text-text">Qualified</span></label
+                  >
+                  <label
+                    class="flex items-center gap-2.5 px-2.5 py-2 rounded-lg hover:bg-subtle cursor-pointer transition-colors duration-200"
+                    ><input
+                      type="checkbox"
+                      class="w-4 h-4 rounded border-border-strong accent-[var(--color-accent)]"
+                      checked
+                    /><span class="text-sm text-text">Advanced</span></label
+                  >
+                  <label
+                    class="flex items-center gap-2.5 px-2.5 py-2 rounded-lg hover:bg-subtle cursor-pointer transition-colors duration-200"
+                    ><input
+                      type="checkbox"
+                      class="w-4 h-4 rounded border-border-strong accent-[var(--color-accent)]"
+                      checked
+                    /><span class="text-sm text-text">Payment</span></label
+                  >
+                  <label
+                    class="flex items-center gap-2.5 px-2.5 py-2 rounded-lg hover:bg-subtle cursor-pointer transition-colors duration-200"
+                    ><input
+                      type="checkbox"
+                      class="w-4 h-4 rounded border-border-strong accent-[var(--color-accent)]"
+                    /><span class="text-sm text-text">Closed-Won</span></label
+                  >
+                  <label
+                    class="flex items-center gap-2.5 px-2.5 py-2 rounded-lg hover:bg-subtle cursor-pointer transition-colors duration-200"
+                    ><input
+                      type="checkbox"
+                      class="w-4 h-4 rounded border-border-strong accent-[var(--color-accent)]"
+                    /><span class="text-sm text-text">Closed-Lost</span></label
+                  >
+                </div>
+              </div>
+
+              <!-- View toggle -->
+              <div class="relative" data-dropdown>
+                <button
+                  data-dropdown-trigger
+                  class="inline-flex items-center gap-2 h-9 px-3 rounded-xl border border-border bg-card text-sm font-medium text-text hover:bg-subtle transition-colors duration-200"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i
+                    data-view-icon
+                    class="ph ph-list-bullets text-base text-muted"
+                  ></i>
+                  <span data-view-label class="hidden sm:inline"
+                    >List view</span
+                  >
+                  <i class="ph ph-caret-down text-xs text-muted"></i>
+                </button>
+                <div
+                  data-dropdown-menu
+                  class="absolute left-0 top-full mt-2 w-44 card !rounded-2xl shadow-xl shadow-black/5 p-1.5 opacity-0 pointer-events-none scale-95 origin-top-left transition-all duration-200 z-50"
+                  role="menu"
+                >
+                  <button
+                    data-view="list"
+                    class="flex items-center justify-between w-full px-3 py-2 rounded-lg text-sm font-semibold text-heading bg-subtle"
+                    role="menuitem"
+                  >
+                    <span class="flex items-center gap-3"
+                      ><i class="ph ph-list-bullets text-base"></i> List
+                      view</span
+                    >
+                    <i class="ph-bold ph-check text-accent"></i>
+                  </button>
+                  <button
+                    data-view="kanban"
+                    class="flex items-center justify-between w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                    role="menuitem"
+                  >
+                    <span class="flex items-center gap-3"
+                      ><i class="ph ph-kanban text-base text-muted"></i> Kanban
+                      view</span
+                    >
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Import/Export -->
+            <div class="relative ml-auto" data-dropdown>
+              <button
+                data-dropdown-trigger
+                class="inline-flex items-center gap-2 h-9 px-3 rounded-xl border border-border bg-card text-sm font-medium text-text hover:bg-subtle transition-colors duration-200"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="ph ph-download-simple text-base text-muted"></i>
+                <span class="hidden sm:inline">Import/Export</span>
+                <i
+                  class="ph ph-caret-down text-xs text-muted hidden sm:inline"
+                ></i>
+              </button>
+              <div
+                data-dropdown-menu
+                class="absolute right-0 top-full mt-2 w-56 card !rounded-2xl shadow-xl shadow-black/5 p-1.5 opacity-0 pointer-events-none scale-95 origin-top-right transition-all duration-200 z-50"
+                role="menu"
+              >
+                <button
+                  class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                  role="menuitem"
+                >
+                  <i class="ph ph-file-csv text-base text-muted"></i> Import
+                  with CSV
+                </button>
+                <button
+                  class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                  role="menuitem"
+                >
+                  <i class="ph ph-export text-base text-muted"></i> Export view
+                  as CSV
+                </button>
+                <button
+                  class="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors duration-200"
+                  role="menuitem"
+                >
+                  <i
+                    class="ph ph-microsoft-excel-logo text-base text-muted"
+                  ></i>
+                  Export view as Excel
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── LIST VIEW ────────────────────────────────────────── -->
+          <div id="deals-list" class="card overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full min-w-[980px] text-left">
+                <thead>
+                  <tr class="border-b border-border bg-subtle/50">
+                    <th class="px-5 py-3 w-10">
+                      <input
+                        type="checkbox"
+                        class="w-4 h-4 rounded border-border-strong accent-[var(--color-accent)]"
+                      />
+                    </th>
+                    <th
+                      class="px-3 py-3 text-xs font-semibold text-muted uppercase tracking-wide"
+                    >
+                      <span class="inline-flex items-center gap-1"
+                        >Deal name <i class="ph ph-caret-up-down text-xs"></i
+                      ></span>
+                    </th>
+                    <th
+                      class="px-3 py-3 text-xs font-semibold text-muted uppercase tracking-wide"
+                    >
+                      <span class="inline-flex items-center gap-1"
+                        >Company <i class="ph ph-caret-up-down text-xs"></i
+                      ></span>
+                    </th>
+                    <th
+                      class="px-3 py-3 text-xs font-semibold text-muted uppercase tracking-wide"
+                    >
+                      <span class="inline-flex items-center gap-1"
+                        >Price <i class="ph ph-caret-up-down text-xs"></i
+                      ></span>
+                    </th>
+                    <th
+                      class="px-3 py-3 text-xs font-semibold text-muted uppercase tracking-wide"
+                    >
+                      <span class="inline-flex items-center gap-1"
+                        >Date created <i class="ph ph-caret-up-down text-xs"></i
+                      ></span>
+                    </th>
+                    <th
+                      class="px-3 py-3 text-xs font-semibold text-muted uppercase tracking-wide"
+                    >
+                      <span class="inline-flex items-center gap-1"
+                        >Owner <i class="ph ph-caret-up-down text-xs"></i
+                      ></span>
+                    </th>
+                    <th
+                      class="px-3 py-3 text-xs font-semibold text-muted uppercase tracking-wide"
+                    >
+                      <span class="inline-flex items-center gap-1"
+                        >Stage <i class="ph ph-caret-up-down text-xs"></i
+                      ></span>
+                    </th>
+                    <th class="px-5 py-3 w-10"></th>
+                  </tr>
+                </thead>
+                <tbody id="deals-table-body"></tbody>
+              </table>
+            </div>
+            <!-- Pagination -->
+            <div
+              class="flex items-center justify-between gap-3 flex-wrap px-5 py-4 border-t border-border"
+            >
+              <div class="flex items-center gap-2 text-sm text-muted">
+                <span class="hidden sm:inline">Show items</span>
+                <div class="relative" data-dropdown>
+                  <button
+                    data-dropdown-trigger
+                    class="inline-flex items-center gap-2 h-9 px-3 rounded-lg border border-border bg-card text-sm font-medium text-text hover:bg-subtle transition-colors duration-200"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <span>10</span
+                    ><i class="ph ph-caret-down text-xs text-muted"></i>
+                  </button>
+                  <div
+                    data-dropdown-menu
+                    class="absolute left-0 bottom-full mb-2 w-24 card !rounded-2xl shadow-xl shadow-black/5 p-1.5 opacity-0 pointer-events-none scale-95 origin-bottom-left transition-all duration-200 z-50"
+                    role="menu"
+                  >
+                    <button
+                      data-per-page="10"
+                      class="w-full px-3 py-2 rounded-lg text-sm font-semibold text-heading bg-subtle text-left"
+                      role="menuitem"
+                    >
+                      10
+                    </button>
+                    <button
+                      data-per-page="25"
+                      class="w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors text-left"
+                      role="menuitem"
+                    >
+                      25
+                    </button>
+                    <button
+                      data-per-page="50"
+                      class="w-full px-3 py-2 rounded-lg text-sm text-text hover:bg-subtle transition-colors text-left"
+                      role="menuitem"
+                    >
+                      50
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <button
+                  data-page-prev
+                  class="w-9 h-9 rounded-lg border border-border bg-card flex items-center justify-center text-muted hover:bg-subtle hover:text-heading transition-colors duration-200"
+                  aria-label="Previous"
+                >
+                  <i class="ph ph-arrow-left text-base"></i>
+                </button>
+                <div data-page-nums class="flex items-center gap-1.5">
+                  <button
+                    data-page-num="1"
+                    class="w-9 h-9 rounded-lg bg-heading text-card text-sm font-semibold"
+                  >
+                    1
+                  </button>
+                </div>
+                <button
+                  data-page-next
+                  class="w-9 h-9 rounded-lg border border-border bg-card flex items-center justify-center text-muted hover:bg-subtle hover:text-heading transition-colors duration-200"
+                  aria-label="Next"
+                >
+                  <i class="ph ph-arrow-right text-base"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── KANBAN VIEW ──────────────────────────────────────── -->
+          <div id="deals-kanban" class="hidden overflow-x-auto pb-2">
+            <div id="deals-kanban-board" class="flex gap-5 min-w-min"></div>
+          </div>
+        </div>
+      </main>
+
+      <nav
+  id="mobile-bottom-nav"
+  class="fixed bottom-0 left-0 right-0 z-20 bg-card border-t border-border lg:hidden"
+  aria-label="Mobile navigation"
+>
+  <div class="flex items-center justify-around h-16 px-2">
+    <a class='nav-item flex flex-col items-center gap-1 px-3 py-1.5 text-muted hover:text-heading transition-colors duration-200' data-nav='dashboard' href='index.html'>
+      <i class="ph ph-squares-four text-xl"></i>
+      <span class="text-[10px] font-medium">Dashboard</span>
+    </a>
+    <a class='nav-item flex flex-col items-center gap-1 px-3 py-1.5 text-muted hover:text-heading transition-colors duration-200' data-nav='contacts' href='contacts.html'>
+      <i class="ph ph-address-book text-xl"></i>
+      <span class="text-[10px] font-medium">Contacts</span>
+    </a>
+    <a class='nav-item flex flex-col items-center gap-1 px-3 py-1.5 text-muted hover:text-heading transition-colors duration-200' data-nav='deals' href='deals.html'>
+      <i class="ph ph-handshake text-xl"></i>
+      <span class="text-[10px] font-medium">Deals</span>
+    </a>
+    <a class='nav-item flex flex-col items-center gap-1 px-3 py-1.5 text-muted hover:text-heading transition-colors duration-200' data-nav='tasks' href='tasks.html'>
+      <i class="ph ph-check-square text-xl"></i>
+      <span class="text-[10px] font-medium">Tasks</span>
+    </a>
+    <button
+      id="mobile-more-btn"
+      class="flex flex-col items-center gap-1 px-3 py-1.5 text-muted hover:text-heading transition-colors duration-200"
+      aria-label="More options"
+    >
+      <i class="ph ph-list text-xl"></i>
+      <span class="text-[10px] font-medium">Menu</span>
+    </button>
+  </div>
+</nav>
+
+    </div>
+
+    <!-- ── DEAL DETAIL DRAWER ──────────────────────────────────── -->
+    <div
+      id="deal-drawer-backdrop"
+      class="fixed inset-0 z-[50] bg-black/30 backdrop-blur-[2px] hidden opacity-0 transition-opacity duration-300"
+    ></div>
+    <aside
+      id="deal-drawer"
+      class="fixed top-0 right-0 bottom-0 z-[55] w-full max-w-[520px] bg-app-bg border-l border-border shadow-2xl translate-x-full transition-transform duration-300 overflow-y-auto flex flex-col"
+      aria-label="Deal detail"
+    >
+      <div
+        class="flex items-center justify-between gap-3 px-5 py-4 border-b border-border shrink-0 sticky top-0 bg-app-bg z-10"
+      >
+        <div class="flex items-center gap-2">
+          <button
+            id="deal-drawer-close"
+            class="w-8 h-8 rounded-lg flex items-center justify-center text-muted hover:bg-subtle hover:text-heading transition-colors"
+            aria-label="Close drawer"
+          >
+            <i class="ph ph-x text-base"></i>
+          </button>
+          <button
+            id="deal-drawer-expand"
+            class="w-8 h-8 rounded-lg flex items-center justify-center text-muted hover:bg-subtle hover:text-heading transition-colors"
+            aria-label="Open full page"
+            title="Open full page"
+          >
+            <i class="ph ph-arrows-out-simple text-base"></i>
+          </button>
+        </div>
+        <a class='inline-flex items-center gap-2 h-8 px-3.5 rounded-lg border border-border bg-card text-sm font-semibold text-heading hover:bg-subtle transition-colors' href='add-deal.html' id='deal-drawer-edit'>
+          <i class="ph ph-pencil-simple text-sm"></i> Edit deal
+        </a>
+      </div>
+      <div id="deal-drawer-body" class="flex-1 p-5 space-y-4"></div>
+    </aside>
+
+    <!-- SEARCH MODAL -->
+    <div
+      id="search-modal"
+      class="fixed inset-0 z-[60] hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Search"
+    >
+      <div
+        class="absolute inset-0 bg-black/40 backdrop-blur-sm"
+        data-close-search
+      ></div>
+      <div
+        class="relative mx-auto mt-20 w-[92%] max-w-[560px] card !rounded-2xl shadow-2xl overflow-hidden pop-enter"
+      >
+        <div class="flex items-center gap-3 px-4 h-14 border-b border-border">
+          <i class="ph ph-magnifying-glass text-lg text-muted"></i>
+          <input
+            type="text"
+            placeholder="Search something"
+            class="flex-1 bg-transparent text-[15px] text-heading placeholder:text-muted focus:outline-none"
+            autocomplete="off"
+          />
+          <kbd
+            class="text-[11px] font-medium text-muted bg-subtle border border-border rounded px-1.5 py-0.5"
+            >⌘ F</kbd
+          >
+        </div>
+        <div class="p-2 max-h-[320px] overflow-y-auto">
+          <p
+            class="px-3 py-2 text-[11px] font-semibold uppercase tracking-wide text-muted/70"
+          >
+            Frequent deals
+          </p>
+          <button
+            class="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl hover:bg-subtle transition-colors duration-200 text-left"
+          >
+            <span
+              class="w-9 h-9 rounded-lg bg-subtle flex items-center justify-center shrink-0"
+              ><i class="ph ph-handshake text-base text-muted"></i
+            ></span>
+            <span class="flex-1 min-w-0"
+              ><span class="block text-sm font-medium text-heading truncate"
+                >Cloud Infrastructure Migration</span
+              ><span class="block text-[11px] text-muted truncate"
+                >Amazon.com, Inc</span
+              ></span
+            >
+          </button>
+          <button
+            class="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl hover:bg-subtle transition-colors duration-200 text-left"
+          >
+            <span
+              class="w-9 h-9 rounded-lg bg-subtle flex items-center justify-center shrink-0"
+              ><i class="ph ph-handshake text-base text-muted"></i
+            ></span>
+            <span class="flex-1 min-w-0"
+              ><span class="block text-sm font-medium text-heading truncate"
+                >Online Learning Platform</span
+              ><span class="block text-[11px] text-muted truncate"
+                >Coursera, Inc</span
+              ></span
+            >
+          </button>
+        </div>
+        <div
+          class="flex items-center gap-4 px-4 py-3 border-t border-border text-[11px] text-muted"
+        >
+          <span class="inline-flex items-center gap-1"
+            ><kbd class="bg-subtle border border-border rounded px-1.5 py-0.5"
+              >Esc</kbd
+            >
+            Quit</span
+          >
+        </div>
+      </div>
+    </div>
+  <script defer src="index.js"></script></body>
+
+
+</html>
